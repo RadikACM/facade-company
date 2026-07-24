@@ -1,1 +1,33 @@
-<p>news works!</p>
+<section class="news-section">
+  <div class="container">
+    <h2>Новости и публикации</h2>
+
+    @if (posts$ | async; as posts) {
+      <div class="news-grid">
+        @for (post of posts; track post.id) {
+          <article class="news-card">
+            @if (post.imageUrl) {
+              <div class="image-wrapper">
+                <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
+              </div>
+            }
+
+            <div class="content">
+              <time class="date">{{ post.publishedAt | date:'d MMMM yyyy' }}</time>
+              <h3 class="title">{{ post.title }}</h3>
+              <p class="excerpt">{{ post.excerpt }}</p>
+
+              @if (post.url) {
+                <a [href]="post.url" target="_blank" class="read-more">Читать подробнее →</a>
+              }
+            </div>
+          </article>
+        } @empty {
+          <p class="empty">Записей пока нет.</p>
+        }
+      </div>
+    } @else {
+      <p class="loading">Загрузка новостей...</p>
+    }
+  </div>
+</section>

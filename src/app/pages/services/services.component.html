@@ -1,1 +1,30 @@
-<p>services works!</p>
+<section class="services-section">
+  <div class="container">
+    <h2>Наши услуги</h2>
+
+    <div class="services-grid">
+      @for (item of services(); track item.id) {
+        @if (item.isPublished) {
+          <div class="service-card">
+            @if (item.imageUrl) {
+              <div class="icon-box">
+                <img [src]="item.imageUrl" [alt]="item.title" loading="lazy" />
+              </div>
+            }
+
+            <div class="details">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.shortDescription }}</p>
+
+              <div class="badge-delivery">
+                Срок выполнения: <strong>~ {{ item.deliveryWeeks }} нед.</strong>
+              </div>
+            </div>
+          </div>
+        }
+      } @empty {
+        <p class="empty">Список услуг пока пуст.</p>
+      }
+    </div>
+  </div>
+</section>
