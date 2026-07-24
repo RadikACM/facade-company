@@ -1,9 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* ===============================
+     FACADE COLOR SYSTEM
+     =============================== */
+
+  /* ТЁМНЫЕ ФОНЫ */
+  --bg-main: #171717;        /* Основной фон / Hero */
+  --bg-secondary: #202020;   /* Секции */
+  --bg-surface: #2b2b2b;     /* Hover / вложенные элементы */
+  --bg-card: #262626;        /* Карточки */
+
+  /* СВЕТЛЫЕ ФОНЫ */
+  --bg-light: #f4f4f5;       /* Светлые секции */
+  --bg-light-card: #ffffff;  /* Светлые карточки */
+
+  /* ФИРМЕННЫЙ ОРАНЖЕВЫЙ */
+  --brand-main: #f97316;     /* Основной акцент */
+  --brand-bright: #fb923c;   /* Hover */
+  --brand-light: #fdba74;    /* Мягкий акцент / свечение */
+
+  /* ТЕКСТ НА ТЁМНОМ ФОНЕ */
+  --text-main: #ffffff;      /* Заголовки */
+  --text-secondary: #d1d5db;/* Основной текст */
+  --text-muted: #9ca3af;    /* Второстепенный текст */
+
+  /* ТЕКСТ НА СВЕТЛОМ ФОНЕ */
+  --text-dark: #18181b;
+
+  /* ГРАНИЦЫ */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-light: #d4d4d8;
+
+  /* СОСТОЯНИЯ */
+  --hover: #fb923c;
+
+  /* ГРАДИЕНТ */
+  --brand-color: linear-gradient(
+    135deg,
+    #f97316 0%,
+    #fb923c 100%
+  );
+}
 
 body {
   margin: 0;
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: var(--bg-main);
+  color: var(--text-main);
 }
 
 * {
@@ -15,4 +58,26 @@ button {
   border: none;
   background-color: transparent;
   font-family: inherit;
+}
+
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.service-card:hover {
+  background: var(--bg-surface);
+}
+
+.button {
+  background: var(--brand-color);
+  color: var(--text-dark);
+}
+
+.button:hover {
+  background: var(--brand-bright);
+}
+
+.section-text {
+  color: var(--text-secondary);
 }
