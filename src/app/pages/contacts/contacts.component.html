@@ -1,1 +1,47 @@
-<button (click)="saveContacts()">Save Contacts</button>
+<section class="contacts-section">
+  @if (contacts$ | async; as contacts) {
+    <div class="contacts-card">
+      <h2>Наши контакты</h2>
+
+      <div class="info-list">
+        <div class="info-item">
+          <span class="label">Телефон:</span>
+          <a [href]="'tel:' + contacts.phone" class="value">{{ contacts.phone }}</a>
+        </div>
+
+        <div class="info-item">
+          <span class="label">WhatsApp:</span>
+          <a [href]="'https://wa.me/' + contacts.phoneWp" target="_blank" class="value">{{ contacts.phoneWp }}</a>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Email:</span>
+          <a [href]="'mailto:' + contacts.email" class="value">{{ contacts.email }}</a>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Адрес:</span>
+          <a [href]="contacts.adressUrl" target="_blank" class="value">{{ contacts.address }}</a>
+        </div>
+
+        <div class="info-item">
+          <span class="label">Режим работы:</span>
+          <span class="value">{{ contacts.workingHours }}</span>
+        </div>
+      </div>
+
+      @if (contacts.instagramUrl || contacts.facebookUrl) {
+        <div class="socials">
+          @if (contacts.instagramUrl) {
+            <a [href]="contacts.instagramUrl" target="_blank" class="social-link">Instagram</a>
+          }
+          @if (contacts.facebookUrl) {
+            <a [href]="contacts.facebookUrl" target="_blank" class="social-link">Facebook</a>
+          }
+        </div>
+      }
+    </div>
+  } @else {
+    <p class="loading">Загрузка контактов...</p>
+  }
+</section>

@@ -16,10 +16,7 @@ export class NewsService {
     map((posts) =>
       posts.map((post) => ({
         ...post,
-        create:
-          post.createdAt instanceof Date
-            ? post.createdAt
-            : new Date(post.createdAt),
+        publishedAt: this.convertTimestamp(post.publishedAt),
       })),
     ),
     shareReplay({ bufferSize: 1, refCount: true }),
@@ -45,4 +42,10 @@ export class NewsService {
     const docRef = doc(this.firestore, `news/${postId}`);
     return deleteDoc(docRef);
   }
+
+  private convertTimestamp(value: any): Date {
+  if (!value) return new Date();
+  if (typeof value.toDate === 'function') return value.toDate(); // Если это Firestore Timestamp
+  return new Date(value);
+}
 }

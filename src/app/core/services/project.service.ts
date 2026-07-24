@@ -16,10 +16,7 @@ export class ProjectService {
     map((projects) =>
       projects.map((project) => ({
         ...project,
-        createdAt:
-          project.createdAt instanceof Date
-            ? project.createdAt
-            : new Date(project.createdAt),
+        createdAt: this.convertTimestamp(project.createdAt),
       })),
     ),
     shareReplay({ bufferSize: 1, refCount: true }),
@@ -45,4 +42,10 @@ export class ProjectService {
     const docRef = doc(this.firestore, `projects/${projectId}`);
     return deleteDoc(docRef);
   }
+
+  private convertTimestamp(value: any): Date {
+  if (!value) return new Date();
+  if (typeof value.toDate === 'function') return value.toDate(); // Если это Firestore Timestamp
+  return new Date(value);
+}
 }

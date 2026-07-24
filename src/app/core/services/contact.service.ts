@@ -10,12 +10,9 @@ export class ContactService {
   private readonly firestore = inject(Firestore);
 
   getContacts(): Observable<ContactData> {
-    const ref = doc(this.firestore, 'settings', 'contacts') as any;
-    const raw = docData<ContactData>(ref) as unknown as Observable<
-      ContactData | undefined
-    >;
-    return raw.pipe(shareReplay(1)) as unknown as Observable<ContactData>;
-  }
+  const ref = doc(this.firestore, 'settings', 'contacts');
+  return docData(ref) as Observable<ContactData>;
+}
 
   // Обновляем или создаем документ, если его еще нет (setDoc с ключом merge)
   async saveContacts(contacts: ContactData): Promise<any> {
