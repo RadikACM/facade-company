@@ -1,1 +1,145 @@
-<p>admin-contacts works!</p>
+<section class="admin-contacts">
+  <header class="page-head">
+    <div class="page-head__text">
+      <span class="page-badge">Контакты</span>
+      <h2>Контактная информация</h2>
+      <p>Управление контактными данными, отображаемыми на сайте</p>
+    </div>
+
+    <button
+      type="button"
+      class="btn-save"
+      [disabled]="form.invalid"
+      (click)="onSubmit()"
+    >
+      Сохранить изменения
+    </button>
+  </header>
+
+  <form class="contacts-panel" [formGroup]="form">
+    <div class="contacts-grid">
+      <label class="field">
+        <span class="field__label">Телефон</span>
+        <input
+          class="field__input"
+          type="tel"
+          formControlName="phone"
+          placeholder="+7 (999) 000-00-00"
+        />
+      </label>
+
+      <label class="field">
+        <span class="field__label">WhatsApp</span>
+        <input
+          class="field__input"
+          type="tel"
+          formControlName="phoneWp"
+          placeholder="+7 (999) 000-00-00"
+        />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Instagram</span>
+        <input
+          class="field__input"
+          type="text"
+          formControlName="instagramUrl"
+          placeholder="@username"
+        />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Часы работы</span>
+        <input
+          class="field__input"
+          type="text"
+          formControlName="workingHours"
+          placeholder="Пн - Сб: 09:00 - 18:00"
+        />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Электронная почта</span>
+        <input
+          class="field__input"
+          type="email"
+          formControlName="email"
+          placeholder="example@mail.com"
+        />
+      </label>
+
+      <label class="field field--full">
+        <span class="field__label">Адрес</span>
+        <textarea
+          class="field__input field__textarea"
+          formControlName="address"
+          rows="3"
+          placeholder="Адрес магазина или офиса"
+        ></textarea>
+      </label>
+
+      <label class="field field--full">
+        <span class="field__label">URL карты (Embed)</span>
+        <input
+          class="field__input"
+          type="url"
+          formControlName="adressUrl"
+          placeholder="https://www.google.com/maps/embed?..."
+        />
+      </label>
+    </div>
+
+    <div class="preview-block">
+      <h3>Предпросмотр</h3>
+      <div class="preview-cards">
+        <article class="preview-card">
+          <img src="/icons/call.svg" alt="" />
+          <div>
+            <span>Телефон</span>
+            <strong>{{ form.value.phone }}</strong>
+          </div>
+        </article>
+
+        <article class="preview-card preview-card--whatsapp">
+          <img src="/icons/whatsapp.svg" alt="" />
+          <div>
+            <span>WhatsApp</span>
+            <strong>{{ form.value.phoneWp }}</strong>
+          </div>
+        </article>
+
+        <article class="preview-card preview-card--instagram">
+          <img src="/icons/instagram.svg" alt="" />
+          <div>
+            <span>Instagram</span>
+            <strong>{{ form.value.instagramUrl }}</strong>
+          </div>
+        </article>
+
+        <article class="preview-card">
+          <img src="/icons/mail.svg" alt="" />
+          <div>
+            <span>E-mail</span>
+            <strong>{{ form.value.email }}</strong>
+          </div>
+        </article>
+
+        <article class="preview-card preview-card--working">
+          <img src="/icons/clock.svg" alt="" />
+          <div>
+            <span>Часы работы</span>
+            <strong>{{ form.value.workingHours }}</strong>
+          </div>
+        </article>
+      </div>
+
+      <div class="preview-address">
+        <img src="/icons/pin.svg" alt="" />
+        <div>
+          <span>Адрес</span>
+          <p>{{ form.value.address }}</p>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
