@@ -1,1 +1,105 @@
-<p>admin-dashboard works!</p>
+<div class="admin-page">
+  <!-- Заголовок страницы -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Панель управления</h1>
+      <p class="page-subtitle">Обзор активности и ключевых показателей сайта</p>
+    </div>
+  </div>
+
+  <!-- Карточки статистики -->
+  <div class="stats-grid">
+    <!-- Проекты -->
+    <div class="stat-card">
+      <div class="stat-icon icon-projects">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-value">{{ projects().length }}</span>
+        <span class="stat-label">Проектов в портфолио</span>
+      </div>
+    </div>
+
+    <!-- Новости -->
+    <div class="stat-card">
+      <div class="stat-icon icon-news">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2m-4-3H9M9 12h6m-6 4h4"></path>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-value">{{ news().length }}</span>
+        <span class="stat-label">Опубликованных новостей</span>
+      </div>
+    </div>
+
+    <!-- Услуги -->
+    <div class="stat-card">
+      <div class="stat-icon icon-services">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+        </svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-value">{{ services().length }}</span>
+        <span class="stat-label">Услуг и направлений</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Основной контент: последние добавления -->
+  <div class="dashboard-grid">
+    <!-- Последние проекты -->
+    <div class="data-card">
+      <div class="card-header">
+        <h3 class="card-title">Последние проекты</h3>
+      </div>
+
+      @if (projects().length === 0) {
+        <div class="empty-state">Проекты ещё не добавлены</div>
+      } @else {
+        <div class="recent-list">
+          @for (project of projects().slice(0, 4); track project.id) {
+            <div class="recent-item">
+              <div class="item-thumb-wrapper">
+                @if (project.imageUrl) {
+                  <img [src]="project.imageUrl" [alt]="project.title" class="item-thumb" />
+                } @else {
+                  <div class="no-thumb">—</div>
+                }
+              </div>
+              <div class="item-details">
+                <h4 class="item-title">{{ project.title || 'Без названия' }}</h4>
+                <p class="item-meta">{{ project.client || 'Клиент не указан' }} · {{ project.year }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Последние новости -->
+    <div class="data-card">
+      <div class="card-header">
+        <h3 class="card-title">Свежие новости</h3>
+      </div>
+
+      @if (news().length === 0) {
+        <div class="empty-state">Новостей пока нет</div>
+      } @else {
+        <div class="recent-list">
+          @for (post of news().slice(0, 4); track post.id) {
+            <div class="recent-item">
+              <div class="item-details">
+                <h4 class="item-title">{{ post.title || 'Без заголовка' }}</h4>
+                <p class="item-meta">{{ post.publishedAt| date:'dd.MM.yyyy' }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
