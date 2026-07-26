@@ -6,6 +6,7 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
+import { provideMarkdown } from 'ngx-markdown';
 
 // Импортируем initializeApp ИЗ @angular/fire/app!
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -22,5 +23,6 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     // Firestore без inject(...)
     provideFirestore(() => getFirestore()),
+    provideMarkdown()
   ],
 };
