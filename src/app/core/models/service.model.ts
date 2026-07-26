@@ -7,7 +7,5 @@ export interface Service {
   imageUrl: string;
   order: number;
   isPublished: boolean;
-  createdAt: Date;
-  updatedAt: Date;
   deliveryWeeks: number;
 }
