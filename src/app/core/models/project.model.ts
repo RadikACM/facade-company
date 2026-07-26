@@ -4,8 +4,7 @@ export interface Project {
   title: string;
   description: string;
   fullDescription?: string;
-
-  category: string;
+  
   client: string;
   year: number;
   createdAt?: string;
