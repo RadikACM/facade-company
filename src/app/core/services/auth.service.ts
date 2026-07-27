@@ -1,0 +1,54 @@
+import { inject, Injectable, signal } from '@angular/core';
+import { Auth, authState, user } from '@angular/fire/auth';
+import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
+import { map, take } from 'rxjs/operators';
+
+@Injectable({
+    providedIn: 'root',
+})
+export class AuthService {
+    private readonly auth = inject(Auth);
+
+    private readonly ADMIN_EMAILS = [
+        'kusurait@gmail.com',
+
+    ];
+
+    private readonly _isAdmin = signal(false);
+    readonly isAdmin = this._isAdmin.asReadonly();
+
+    constructor() {
+        this.listenAuthState();
+    }
+
+    private listenAuthState(): void {
+        user(this.auth).subscribe((currentUser) => {
+            this._isAdmin.set(this.isAdminEmail(currentUser));
+        });
+    }
+
+    private isAdminEmail(currentUser: User | null): boolean {
+        return this.ADMIN_EMAILS.includes(currentUser?.email ?? '');
+    }
+
+    canActivateAdmin() {
+        return authState(this.auth).pipe(
+            take(1),
+            map((currentUser) => this.isAdminEmail(currentUser))
+        );
+    }
+
+    async login(email: string, password: string): Promise<void> {
+        await setPersistence(this.auth, browserLocalPersistence);
+        await signInWithEmailAndPassword(this.auth, email, password);
+    }
+
+    async logout(): Promise<void> {
+        await signOut(this.auth);
+    }
+
+    async checkIsAdminNow(): Promise<boolean> {
+        const currentUser = this.auth.currentUser;
+        return this.isAdminEmail(currentUser);
+    }
+}
