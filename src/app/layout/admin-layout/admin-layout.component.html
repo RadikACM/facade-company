@@ -6,7 +6,10 @@
         <span class="accent-dot"></span>
         <span>Admin Panel</span>
       </div>
-      <button (click)="closeSidebar()"><img src="/icons/close.svg" alt=""></button>
+      @if(isSidebarOpen()) {
+        <button (click)="closeSidebar()"><img src="/icons/close.svg" alt=""></button>
+      }
+      
     </div>
 
     <nav class="sidebar-nav">
