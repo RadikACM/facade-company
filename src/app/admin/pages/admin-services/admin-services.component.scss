@@ -4,13 +4,14 @@
   gap: 1.5rem;
   padding: 0.5rem;
   color: #e2e8f0;
+}
 
-  .page-header {
+.page-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
     gap: 1rem;
-    flex-direction: column;
 
     .page-title {
       font-size: 1.5rem;
@@ -25,7 +26,6 @@
       margin-top: 0.25rem;
     }
   }
-}
 
 /* Кнопки */
 .btn {
@@ -43,7 +43,6 @@
   &.btn-primary {
     background-color: #f97316;
     color: #ffffff;
-    width: 100%;
 
     &:hover:not(:disabled) {
       background-color: #ea580c;
@@ -93,7 +92,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background-color:  rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -382,5 +381,18 @@
       display: flex;
       gap: 0.25rem;
     }
+  }
+}
+
+@media(max-width: 650px) {
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+  }
+
+  .btn-primary {
+    width: 100%;
   }
 }
