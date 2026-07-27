@@ -11,6 +11,7 @@ import { provideMarkdown } from 'ngx-markdown';
 // Импортируем initializeApp ИЗ @angular/fire/app!
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
@@ -23,6 +24,7 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     // Firestore без inject(...)
     provideFirestore(() => getFirestore()),
-    provideMarkdown()
+    provideMarkdown(),
+    provideAuth(() => getAuth()),
   ],
 };
