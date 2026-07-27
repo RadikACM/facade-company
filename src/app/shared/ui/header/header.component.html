@@ -17,6 +17,12 @@
         +7 (999) 999-99-99
       </a>
 
+      @if (isAdmin()) {
+      <a routerLink="/admin" class="header__admin-link">
+        Админка
+      </a>
+      }
+
       <a class="header-action" routerLink="/contact">Рассчитать стоимость</a>
    </div>
 
