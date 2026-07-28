@@ -1,9 +1,18 @@
 :host {
+  --header-height: 96px;
+
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 .content {
-    flex: 1;
+  flex: 1;
+  padding-top: var(--header-height);
+}
+
+@media (max-width: 1100px) {
+  :host {
+    --header-height: 92px;
+  }
 }
