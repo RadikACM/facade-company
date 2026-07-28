@@ -53,6 +53,11 @@ body {
   box-sizing: border-box;
 }
 
+.container {
+  width: min(100% - 32px, 1123px);
+  margin-inline: auto;
+}
+
 button {
   cursor: pointer;
   border: none;
@@ -78,6 +83,21 @@ button {
   background: var(--brand-bright);
 }
 
+a {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
 .section-text {
   color: var(--text-secondary);
+}
+
+@media (max-width: 1100px) {
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
 }

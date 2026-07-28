@@ -1,7 +1,8 @@
 <header class="header">
   <div class="header-container">
-    <a routerLink="/" class="header-logo">
-      FacadeHouse
+    <a routerLink="/" class="header-logo" aria-label="FacadeHouse — главная">
+      <img class="header-logo-image" src="/images/Logo.png" alt="Логотип FacadeHouse">
+      <span>FacadeHouse</span>
     </a>
     <nav class="header-nav" [class.open]="isMenuOpen">
       <button routerLink="" routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Главная</button>
@@ -13,10 +14,6 @@
    </nav>
 
    <div class="header-actions">
-      <a class="header-phone" href="tel:+79999999999">
-        +7 (999) 999-99-99
-      </a>
-
       <a class="header-action" routerLink="/contact">Рассчитать стоимость</a>
    </div>
 
