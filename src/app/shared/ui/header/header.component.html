@@ -14,6 +14,16 @@
    </nav>
 
    <div class="header-actions">
+      <a class="header-phone" href="tel:+79999999999">
+        +7 (999) 999-99-99
+      </a>
+
+      @if (isAdmin()) {
+      <a routerLink="/admin" class="header__admin-link">
+        Админка
+      </a>
+      }
+
       <a class="header-action" routerLink="/contact">Рассчитать стоимость</a>
    </div>
 

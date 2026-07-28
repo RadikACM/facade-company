@@ -1,0 +1,159 @@
+<div class="admin-page">
+  <div class="page-header justify-between">
+    <div>
+      <h1 class="page-title">Блог</h1>
+      <p class="page-subtitle">Публикация инженерных заметок и статей</p>
+    </div>
+    <button class="btn btn-primary" (click)="openModal()">
+      Написать статью
+    </button>
+  </div>
+
+  <!-- Модальное окно создания/редактирования статьи -->
+  @if (isModalOpen()) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          {{ isEditing() ? 'Редактирование статьи' : 'Создание новой статьи' }}
+        </h3>
+        <button class="modal-close-btn" (click)="closeModal()">
+          &times;
+        </button>
+      </div>
+
+      <form class="admin-form" [formGroup]="blogForm" (ngSubmit)="onSubmit()">
+        <div class="modal-content">
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label>Заголовок статьи</label>
+              <input type="text" formControlName="title" placeholder="Введите заголовок статьи" />
+            </div>
+
+            <div class="form-group full-width">
+              <label>Анонс текста (Excerpt)</label>
+              <textarea rows="2" formControlName="excerpt" placeholder="Короткое превью статьи..."></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Текст статьи Markdown</label>
+              <textarea rows="8" formControlName="content"
+                placeholder="Пишите статью, используя # Заголовки, **жирный** или списки..."></textarea>
+            </div>
+
+            <!-- Блок превью Markdown -->
+            <div class="form-group full-width markdown-preview">
+              <span class="markdown-preview-label">Живое превью:</span>
+              <markdown [data]="currentContent"></markdown>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Фотография статьи</label>
+              <input type="file" #blogFileInput (change)="onBlogFileSelected($event)" accept="image/*" hidden />
+
+              <div class="upload-zone" (click)="blogFileInput.click()" [class.loading]="isUploading()">
+                @if (!blogForm.value.imageUrl) {
+                <span class="icon">
+                  <img src="/icons/build.svg" alt="" />
+                </span>
+                <p>{{ isUploading() ? 'Загрузка...' : 'Нажмите, чтобы выбрать фото' }}</p>
+                } @else {
+                <img [src]="blogForm.value.imageUrl" class="preview-img" alt="Превью" />
+                <div class="change-overlay">Изменить фото</div>
+                }
+              </div>
+            </div>
+
+            <div class="form-group full-width">
+              <label>Ссылка на статью</label>
+              <input type="url" formControlName="url" placeholder="https://example.com/article" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">
+            Отмена
+          </button>
+          <button type="submit" [disabled]="blogForm.invalid" class="btn btn-primary">
+            {{ isEditing() ? 'Сохранить' : 'Опубликовать' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  }
+
+  <!-- Список опубликованных статей -->
+  <div class="data-card">
+    <h3 class="card-section-title">
+      Опубликованные статьи ({{ posts().length }})
+    </h3>
+
+    @if (posts().length === 0) {
+    <p class="empty-state">
+      Пока нет опубликованных статей. Создайте первую статью!
+    </p>
+    } @else {
+    <!-- Десктопная таблица -->
+    <div class="table-responsive desktop-only">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Заголовок</th>
+            <th>Дата публикации</th>
+            <th class="text-right">Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (post of posts(); track post.id) {
+          <tr>
+            <td class="font-medium">{{ post.title }}</td>
+            <td>{{ post.publishedAt | date: "d MMM y" }}</td>
+            <td class="text-right">
+              <button class="btn-icon" (click)="openEditModal(post)" title="Редактировать">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              </button>
+              <button class="btn-icon text-danger" (click)="deletePost(post.id)" title="Удалить">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Мобильные карточки -->
+    <div class="post-cards mobile-only">
+      @for (post of posts(); track post.id) {
+      <article class="post-card">
+        <div class="post-card-header">
+          <h4 class="post-card-title">{{ post.title }}</h4>
+          <span class="post-card-date">{{ post.publishedAt | date: "d MMM y" }}</span>
+        </div>
+        <div class="post-card-body">
+          <p class="post-card-excerpt">
+            {{ post.excerpt || 'Краткое описание отсутствует' }}
+          </p>
+        </div>
+        <div class="post-card-actions">
+          <button class="btn-icon" (click)="openEditModal(post)" title="Редактировать">
+            <img src="/icons/edit.svg" alt="Редактировать" />
+          </button>
+          <button class="btn-icon text-danger" (click)="deletePost(post.id)" title="Удалить">
+            <img src="/icons/delete.svg" alt="Удалить" />
+          </button>
+        </div>
+      </article>
+      }
+    </div>
+    }
+  </div>
+</div>

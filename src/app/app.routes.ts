@@ -33,7 +33,15 @@ export const routes: Routes = [
         ]
     },
     {
+      path: 'login',
+      loadComponent: () => import('./admin/pages/admin-login/admin-login.component').then(m => m.AdminLoginComponent)
+    },
+    {
       path: 'admin',
       loadChildren: () => import('./admin/admin.routes').then(m => m.ADMIN_ROUTES)
     },
+    {
+        path: '**',
+        redirectTo: ''
+    }
 ];

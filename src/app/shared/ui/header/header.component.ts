@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +9,16 @@ import { RouterLink, RouterLinkActive } from "@angular/router";
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  isMenuOpen = false;
+  private readonly authService = inject(AuthService);
 
-  toggleMenu () {
-   this.isMenuOpen = !this.isMenuOpen;
+  readonly isAdmin = this.authService.isAdmin
+  isMenuOpen = signal<boolean>(false);
+
+  toggleMenu() {
+    this.isMenuOpen.update(isOpen => !isOpen);
   }
 
-  closeMenu () {
-    this.isMenuOpen = false;
+  closeMenu() {
+    this.isMenuOpen.set(false);
   }
 }

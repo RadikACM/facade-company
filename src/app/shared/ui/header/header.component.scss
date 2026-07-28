@@ -89,6 +89,27 @@
   white-space: nowrap;
 }
 
+.header__admin-link {
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  padding: .55rem .95rem;
+  font-size: .825rem;
+  text-decoration: none;
+  min-width: 0;
+  max-width: 40vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: padding .25s ease,max-width .25s ease,color .2s ease;
+
+  &:hover {
+    color: var(--text-main);
+    border-color: #ffffff47;
+    background: #ffffff0d;
+  }
+}
+
 .header-action {
   padding: 12px 20px;
   background-color: #c8a24a;
