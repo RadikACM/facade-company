@@ -4,7 +4,7 @@
       <img class="header-logo-image" src="/images/Logo.png" alt="Логотип FacadeHouse">
       <span>FacadeHouse</span>
     </a>
-    <nav class="header-nav" [class.open]="isMenuOpen">
+    <nav class="header-nav" [class.open]="isMenuOpen()">
       <button routerLink="" routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Главная</button>
       <button routerLink="/about"  routerLinkActive="active"  (click)="closeMenu()">О компании</button>
       <button routerLink="contacts"  routerLinkActive="active"  (click)="closeMenu()">Контакты</button>
@@ -14,10 +14,6 @@
    </nav>
 
    <div class="header-actions">
-      <a class="header-phone" href="tel:+79999999999">
-        +7 (999) 999-99-99
-      </a>
-
       @if (isAdmin()) {
       <a routerLink="/admin" class="header__admin-link">
         Админка
@@ -30,8 +26,8 @@
    <button class="header-burger"
     type="button" aria-label="Открыть меню"
      (click)="toggleMenu()"
-      [class.active]="isMenuOpen"
-       [attr.aria-expanded]="isMenuOpen">
+      [class.active]="isMenuOpen()"
+       [attr.aria-expanded]="isMenuOpen()">
         <span></span>
         <span></span>
         <span></span>
