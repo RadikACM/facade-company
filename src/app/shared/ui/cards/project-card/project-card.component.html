@@ -2,25 +2,34 @@
   <div class="project-card-image">
     <img
       class="project-card-photo"
-      [src]="activeImage"
+      [src]="activeImage || project.imageUrl"
       [alt]="project.title"
     >
   </div>
 
   <div class="project-card-content">
-    <h3 class="project-card-title">{{ project.title }}</h3>
-
     <div class="project-card-meta">
       <span class="project-card-category">{{ project.category }}</span>
       <span class="project-card-year">{{ project.year }}</span>
     </div>
 
-    <p class="project-card-description">{{ project.description }}</p>
+    <h3 class="project-card-title">{{ project.title }}</h3>
+
+    @if (project.client) {
+      <p class="project-card-client">
+        Заказчик: <span>{{ project.client }}</span>
+      </p>
+    }
+
+    <!-- Выводит fullDescription, если оно есть, иначе description -->
+    <p class="project-card-description">
+      {{ showFullDescription ? (project.fullDescription || project.description) : project.description }}
+    </p>
+    <button class="switchDesc" (click)="switchDesc()">{{showFullDescription? 'Краткое описание' : 'Полное описание'}}</button>
 
     <!-- Отрисовка галереи -->
     @if (project.gallery && project.gallery.length > 0) {
       <div class="project-card-gallery">
-        <!-- Кнопка с главным фото, если хочется вернуться к нему -->
         <button 
           type="button" 
           class="gallery-thumb"
@@ -30,7 +39,6 @@
           <img [src]="project.imageUrl" [alt]="project.title">
         </button>
 
-        <!-- Остальные изображения галереи -->
         @for (img of project.gallery; track $index) {
           <button 
             type="button" 

@@ -28,10 +28,19 @@
   }
 }
 
+/* Обычная сетка для главной (3 в ряд) */
 .news-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+
+  /* Режим во всю ширину (для страницы /news) */
+  &.full-width {
+    grid-template-columns: 1fr; /* Одна колонка */
+    max-width: 900px;           /* Ограничиваем ширину для удобства чтения */
+    margin: 0 auto;
+    gap: 32px;
+  }
 }
 
 /* Состояния загрузки и пустого списка */

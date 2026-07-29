@@ -11,7 +11,7 @@
     @if (projects$ | async; as projects) {
     <div class="projects-grid">
       @for (project of projects; track project.id) {
-      <app-project-card [project]="project"></app-project-card>
+      <app-project-card [project]="project" [showFullDescription]="true"></app-project-card>
       } @empty {
       <p class="empty">Проекты пока не добавлены.</p>
       }

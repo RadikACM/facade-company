@@ -213,6 +213,49 @@ app-news-card {
   }
 }
 
+/* News Card Excerpt */
+.news-card-excerpt {
+  margin: 0 0 20px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Project Client Info */
+.project-card-client {
+  margin: 0 0 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+
+  span {
+    color: var(--text-main);
+    font-weight: 500;
+  }
+}
+
+.project-card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--brand-main);
+  }
+}
+
+/* Service Link */
+.services-overview-link {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--brand-main);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--brand-bright);
+  }
+}
 
 /* --------------------------------------------------------------------------
    Responsive

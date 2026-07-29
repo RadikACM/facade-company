@@ -1,21 +1,35 @@
-<article class="news-card">
-  <img
-    class="news-card-image"
-    [src]="post.imageUrl"
-    [alt]="post.title"
-  >
+<article class="news-card" [class.full-article]="showFullContent">
+  
+  <!-- Картинку показываем ТОЛЬКО на главной (когда showFullContent = false) -->
+  @if (!showFullContent && post.imageUrl) {
+    <img
+      class="news-card-image"
+      [src]="post.imageUrl"
+      [alt]="post.title"
+    >
+  }
 
   <div class="news-card-content">
     <time class="news-card-date" [attr.datetime]="post.publishedAt">
-      {{ post.publishedAt | date: 'mediumDate' }}
+      {{ post.publishedAt | date: 'dd MMMM yyyy' }}
     </time>
 
     <h3 class="news-card-title">
       {{ post.title }}
     </h3>
 
-    <a class="news-card-link" routerLink='/news'>
-      Читать статью →
-    </a>
+    <!-- Режим полного содержимого (на странице /news) -->
+    @if (showFullContent) {
+      <div class="news-card-markdown" [innerHTML]="(post.content | markdown) | async"></div>
+    } @else {
+      <!-- Режим тизера (на главной странице) -->
+      <p class="news-card-excerpt">
+        {{ post.excerpt }}
+      </p>
+
+      <a class="news-card-link" routerLink="/news">
+        Читать статью →
+      </a>
+    }
   </div>
 </article>
