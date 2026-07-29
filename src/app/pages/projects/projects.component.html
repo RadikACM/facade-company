@@ -1,42 +1,23 @@
 <section class="projects-section">
   <div class="container">
-    <h2>Выполненные проекты</h2>
+    <div class="section-header">
+      <h2>Наши реализованные объекты</h2>
+      <p class="subtitle">
+        От частных коттеджей до крупных коммерческих комплексов — каждый фасад спроектирован и смонтирован с соблюдением
+        всех норм.
+      </p>
+    </div>
 
     @if (projects$ | async; as projects) {
-      <div class="projects-grid">
-        @for (project of projects; track project.id) {
-          <div class="project-card">
-            <div class="cover">
-              <img [src]="project.imageUrl" [alt]="project.title" loading="lazy" />
-            </div>
-
-            <div class="body">
-              <div class="header">
-                <h3>{{ project.title }}</h3>
-                <span class="year">{{ project.year }}</span>
-              </div>
-
-              <p class="description">{{ project.description }}</p>
-
-              <div class="meta">
-                <span><strong>Заказчик:</strong> {{ project.client }}</span>
-              </div>
-
-              @if (project.gallery?.length) {
-                <div class="gallery">
-                  @for (img of project.gallery; track $index) {
-                    <img [src]="img" alt="Фото проекта" loading="lazy" />
-                  }
-                </div>
-              }
-            </div>
-          </div>
-        } @empty {
-          <p class="empty">Проекты пока не добавлены.</p>
-        }
-      </div>
+    <div class="projects-grid">
+      @for (project of projects; track project.id) {
+      <app-project-card [project]="project"></app-project-card>
+      } @empty {
+      <p class="empty">Проекты пока не добавлены.</p>
+      }
+    </div>
     } @else {
-      <p class="loading">Загрузка портфолио...</p>
+    <p class="loading">Загрузка портфолио...</p>
     }
   </div>
 </section>
