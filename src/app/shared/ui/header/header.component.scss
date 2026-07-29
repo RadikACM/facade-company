@@ -71,9 +71,7 @@
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 12px;
-  max-width: 100%;
-  flex-shrink: 0;
+  gap: 24px;
 }
 
 .header-actions {
@@ -92,53 +90,38 @@
 }
 
 .header__admin-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 44px;
-  padding: 0 18px;
-
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 10px;
-
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 999px;
+  padding: .55rem .95rem;
+  font-size: .825rem;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
+  min-width: 0;
+  max-width: 40vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: padding .25s ease,max-width .25s ease,color .2s ease;
 
-  transition: 0.3s;
-}
-
-.header__admin-link:hover {
-  color: var(--brand-main);
-  border-color: var(--brand-main);
+  &:hover {
+    color: var(--text-main);
+    border-color: #ffffff47;
+    background: #ffffff0d;
+  }
 }
 
 .header-action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 44px;
-  padding: 0 24px;
-
-  background: var(--brand-main);
-  border-radius: 10px;
-
-  color: #111827;
-  font-weight: 800;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.25);
+  padding: 12px 20px;
+  background-color: #c8a24a;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
+  border-radius: 6px;
   white-space: nowrap;
-
   transition: 0.3s;
 }
 
 .header-action:hover {
-  background: var(--brand-bright);
+  background-color: #e6c36a;
   transform: translateY(-2px);
 }
 
@@ -231,14 +214,10 @@
 
   .header-nav.open {
     display: flex;
-    position: fixed;
-    top: var(--header-height, 92px);
-    left: 0;
-    right: 0;
-    width: auto;
-    max-width: none;
-    margin: 0;
-    box-sizing: border-box;
+    position: absolute;
+    top: 100%;
+    left: -16px;
+    right: -16px;
     flex-direction: column;
     align-items: center;
     gap: 0;
