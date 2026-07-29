@@ -1,0 +1,477 @@
+.about-hero {
+  padding: 140px 0 90px;
+  background: #0f1018;
+  border-bottom: 1px solid var(--border);
+}
+.about-hero__label {
+  margin: 0 0 16px;
+
+  color: var(--brand-main);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about-hero__title {
+  margin: 0 0 20px;
+
+  color: var(--text-main);
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.05;
+}
+
+.about-hero__text {
+  max-width: 650px;
+  margin: 0;
+
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+// section class="about-history"
+
+.about-history {
+  padding: 110px 0;
+  background: var(--bg-secondary);
+}
+
+.about-history__content {
+  max-width: 820px;
+}
+
+.about-history__label {
+  margin: 0 0 16px;
+
+  color: var(--brand-main);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about-history__title {
+  max-width: 720px;
+  margin: 0 0 28px;
+
+  color: var(--text-main);
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.15;
+}
+
+.about-history__text {
+  margin: 0 0 18px;
+
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.about-history__text:last-child {
+  margin-bottom: 0;
+}
+
+// section class="about-advantages"
+
+.about-advantages {
+  padding: 110px 0;
+  background: var(--bg-main);
+}
+
+.about-advantages__label {
+  margin: 0 0 16px;
+
+  color: var(--brand-main);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about-advantages__title {
+  max-width: 760px;
+  margin: 0 0 50px;
+
+  color: var(--text-main);
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.15;
+}
+
+.about-advantages__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.advantage-card {
+  padding: 32px;
+
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  transition:
+    transform 0.3s,
+    border-color 0.3s;
+}
+
+.advantage-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--brand-main);
+}
+
+.advantage-card__number {
+  display: block;
+  margin-bottom: 28px;
+
+  color: var(--brand-main);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.advantage-card__title {
+  margin: 0 0 14px;
+
+  color: var(--text-main);
+  font-size: 22px;
+}
+
+.advantage-card__text {
+  margin: 0;
+
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+// section class="about-trust"
+
+.about-trust {
+  padding: 110px 0;
+  background: var(--bg-secondary);
+}
+
+.about-trust__content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-trust__label {
+  margin: 0 0 16px;
+
+  color: var(--brand-main);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about-trust__title {
+  margin: 0 0 24px;
+
+  color: var(--text-main);
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.15;
+}
+
+.about-trust__description {
+  max-width: 620px;
+  margin: 0;
+
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.about-trust__list {
+  display: grid;
+  gap: 16px;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.about-trust__item {
+  position: relative;
+
+  padding: 20px 24px 20px 56px;
+
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  color: var(--text-main);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.about-trust__item::before {
+  content: "✓";
+
+  position: absolute;
+  top: 50%;
+  left: 22px;
+  transform: translateY(-50%);
+
+  color: var(--brand-main);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+// section class="about-cta"
+
+/* =========================================
+   ABOUT CTA
+   ========================================= */
+
+.about-cta {
+  padding: 100px 0;
+  background: #0f1018;
+  border-top: 1px solid rgba(200, 162, 74, 0.25);
+  border-bottom: 1px solid var(--border);
+}
+
+.about-cta__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 70px;
+}
+
+.about-cta__label {
+  margin: 0 0 16px;
+
+  color: var(--brand-main);
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.about-cta__title {
+  max-width: 760px;
+  margin: 0 0 20px;
+
+  color: var(--text-main);
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.15;
+}
+
+.about-cta__text {
+  max-width: 680px;
+  margin: 0;
+
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.about-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 54px;
+  padding: 0 30px;
+
+  background: var(--brand-main);
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  color: #111827;
+  text-decoration: none;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+
+  box-shadow: 0 12px 30px rgba(200, 162, 74, 0.18);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-cta__button:hover {
+  background: var(--brand-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(200, 162, 74, 0.28);
+}
+
+.about-cta__button:active {
+  transform: translateY(0);
+}
+
+.about-cta__button:focus-visible {
+  outline: 3px solid rgba(230, 195, 106, 0.35);
+  outline-offset: 4px;
+}
+
+
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1024px) {
+  .about-hero {
+    padding: 140px 0 80px;
+  }
+
+  .about-history,
+  .about-advantages,
+  .about-trust {
+    padding: 90px 0;
+  }
+
+  .about-advantages__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .about-trust__content {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-cta {
+    padding: 85px 0;
+  }
+
+  .about-cta__content {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .about-cta__button {
+    justify-self: start;
+  }
+}
+
+
+/* =========================================
+   PHONE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 100px 0 70px;
+  }
+
+  .about-history,
+  .about-advantages,
+  .about-trust,
+  .about-cta {
+    padding: 70px 0;
+  }
+
+  .about-hero__title,
+  .about-history__title,
+  .about-advantages__title,
+  .about-trust__title,
+  .about-cta__title {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .about-hero__text,
+  .about-history__text,
+  .about-trust__description,
+  .about-cta__text {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .about-advantages__title {
+    margin-bottom: 36px;
+  }
+
+  .about-advantages__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .advantage-card {
+    padding: 26px;
+  }
+
+  .about-trust__content {
+    gap: 36px;
+  }
+
+  .about-trust__item {
+    padding: 18px 20px 18px 52px;
+    font-size: 16px;
+  }
+
+  .about-trust__item::before {
+    left: 19px;
+  }
+
+  .about-cta__content {
+    gap: 30px;
+  }
+
+  .about-cta__button {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 20px;
+  }
+}
+
+
+/* =========================================
+   SMALL PHONE
+   ========================================= */
+
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 80px 0 60px;
+  }
+
+  .about-history,
+  .about-advantages,
+  .about-trust,
+  .about-cta {
+    padding: 60px 0;
+  }
+
+  .about-hero__label,
+  .about-history__label,
+  .about-advantages__label,
+  .about-trust__label,
+  .about-cta__label {
+    font-size: 12px;
+    letter-spacing: 1.4px;
+  }
+
+  .about-hero__title,
+  .about-history__title,
+  .about-advantages__title,
+  .about-trust__title,
+  .about-cta__title {
+    font-size: 32px;
+  }
+
+  .advantage-card {
+    padding: 22px;
+    border-radius: 14px;
+  }
+
+  .advantage-card__title {
+    font-size: 20px;
+  }
+
+  .about-trust__item {
+    padding: 17px 16px 17px 48px;
+    font-size: 15px;
+  }
+
+  .about-trust__item::before {
+    left: 17px;
+  }
+}
