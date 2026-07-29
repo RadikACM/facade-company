@@ -9,5 +9,6 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./service-card.component.scss', '../cards.scss']
 })
 export class ServiceCardComponent {
-@Input({ required: true }) card!: Service;
+  @Input({ required: true }) card!: Service;
+  @Input() showFullDescription: boolean = false;
 }

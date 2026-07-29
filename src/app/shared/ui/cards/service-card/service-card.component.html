@@ -1,11 +1,11 @@
 <article class="services-overview-card">
   <span class="services-overview-number">
-    {{ card.order < 10 ? '0' + card.order : card.order }}
+    {{ card.slug }}
   </span>
 
   <h3>{{ card.title }}</h3>
 
-  <p>{{ card.shortDescription }}</p>
+  <p>{{ showFullDescription ? (card.description) : card.shortDescription }}</p>
 
   <a class="services-overview-link" routerLink='/services'>
     Подробнее →

@@ -23,7 +23,7 @@
 
           <a
             class="hero-button hero-button-secondary"
-            routerLink="/projects"
+            href="#projects"
           >
             Посмотреть проекты
           </a>
@@ -50,14 +50,14 @@
       </div>
 
       <div class="services-overview-grid">
-        @for (service of services; track service.slug) {
+        @for (service of services | async; track service.slug) {
           <app-service-card [card]="service" />
         }
       </div>
     </div>
   </section>
 
-  <section class="projects">
+  <section class="projects" id="projects">
     <div class="container">
       <div class="projects-header">
         <div class="projects-heading">
@@ -123,7 +123,7 @@
 
           <a
             class="contact-cta-button secondary"
-            routerLink="/projects"
+            href="#projects"
           >
             Посмотреть проекты
           </a>

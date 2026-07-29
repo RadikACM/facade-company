@@ -10,7 +10,7 @@
     @if (posts$ | async; as posts) {
       <div class="news-grid full-width">
         @for (post of posts; track post.id) {
-          <app-news-card [post]="post"[showFullContent]="true" />
+          <app-news-card [post]="post" [showFullContent]="true" />
         } @empty {
           <p class="empty">Записей пока нет.</p>
         }
