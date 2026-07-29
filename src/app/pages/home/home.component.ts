@@ -19,7 +19,7 @@ export class HomeComponent {
   private projectsService = inject(ProjectService);
   private newsService = inject(NewsService);
 
-  services = this.serviceService.services();
+  services = this.serviceService.getServices();
   projects = this.projectsService.getProjects();
   news = this.newsService.getsPosts();
 }

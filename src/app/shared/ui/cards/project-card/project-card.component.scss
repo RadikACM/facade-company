@@ -33,3 +33,25 @@
     border-color: var(--brand-main);
   }
 }
+
+.switchDesc {
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.825rem;
+  text-decoration: none;
+  min-width: 0;
+  max-width: 40vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: padding 0.25s ease, max-width 0.25s ease, color 0.2s ease;
+  margin: 15px;
+
+  &:hover {
+  color: var(--text-main);
+  border-color: rgba(255, 255, 255, 0.2784313725);
+  background: rgba(255, 255, 255, 0.0509803922);
+  }
+}

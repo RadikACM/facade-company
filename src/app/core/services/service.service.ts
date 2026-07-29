@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Firestore, collection, collectionData, doc, addDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Service } from '../models/service.model';
-import { from, Observable, map } from 'rxjs';
+import { from, Observable, map, shareReplay } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
@@ -15,11 +15,16 @@ export class ServiceService {
   private readonly services$ = (
     collectionData(this.servicesCollection, { idField: 'id' }) as Observable<Service[]>
   ).pipe(
-    map((services) => services.sort((a, b) => a.deliveryWeeks - b.deliveryWeeks))
+    map((services) => services.sort((a, b) => a.deliveryWeeks - b.deliveryWeeks)),
+    shareReplay({ bufferSize: 1, refCount: false }) // refCount: false удерживает последнюю подписку активной
   );
 
   // Публичный сигнал для компонентов (по умолчанию пустой массив [])
   readonly services = toSignal(this.services$, { initialValue: [] });
+
+  getServices(): Observable<Service[]> {
+    return this.services$;
+  }
 
   createService(newService: Omit<Service, 'id'>): Observable<any> {
     return from(addDoc(this.servicesCollection, {

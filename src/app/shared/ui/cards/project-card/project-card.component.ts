@@ -12,6 +12,8 @@ export class ProjectCardComponent implements OnInit {
 
   activeImage!: string;
 
+  @Input() showFullDescription: boolean = false;
+
   ngOnInit(): void {
     // Устанавливаем стартовое изображение
     this.activeImage = this.project.imageUrl;
@@ -19,5 +21,9 @@ export class ProjectCardComponent implements OnInit {
 
   selectImage(imgUrl: string): void {
     this.activeImage = imgUrl;
+  }
+
+  switchDesc() {
+    this.showFullDescription = !this.showFullDescription
   }
 }

@@ -1,5 +1,13 @@
 <article class="services-overview-card">
-  <span class="services-overview-slug">{{ card.slug }}</span>
+  <span class="services-overview-number">
+    {{ card.slug }}
+  </span>
+
   <h3>{{ card.title }}</h3>
-  <p>{{ card.description }}</p>
+
+  <p>{{ showFullDescription ? (card.description) : card.shortDescription }}</p>
+
+  <a class="services-overview-link" routerLink='/services'>
+    Подробнее →
+  </a>
 </article>
