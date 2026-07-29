@@ -1,0 +1,21 @@
+<article class="news-card">
+  <img
+    class="news-card-image"
+    [src]="post.imageUrl"
+    [alt]="post.title"
+  >
+
+  <div class="news-card-content">
+    <time class="news-card-date" [attr.datetime]="post.publishedAt">
+      {{ post.publishedAt | date: 'mediumDate' }}
+    </time>
+
+    <h3 class="news-card-title">
+      {{ post.title }}
+    </h3>
+
+    <a class="news-card-link" routerLink='/news'>
+      Читать статью →
+    </a>
+  </div>
+</article>

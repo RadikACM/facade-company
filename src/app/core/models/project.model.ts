@@ -8,6 +8,7 @@ export interface Project {
   client: string;
   year: number;
   createdAt?: string;
+  category: string
 
   imageUrl: string;
   gallery?: string[];

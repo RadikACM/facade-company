@@ -37,6 +37,17 @@
                 />
               </div>
 
+              <!-- Категория -->
+               <div class="form-group full-width">
+                <label class="form-label">Категория проекта *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="category"
+                  placeholder="Например: Частный дом"
+                />
+              </div>
+
               <!-- Заказчик / Клиент -->
               <div class="form-group">
                 <label class="form-label">Заказчик / Клиент</label>
@@ -167,6 +178,7 @@
             <tr>
               <th>Обложка</th>
               <th>Название</th>
+              <th>Категория</th>
               <th>Клиент</th>
               <th>Год</th>
               <th>Дата создания</th>
@@ -184,6 +196,7 @@
                   }
                 </td>
                 <td class="font-medium">{{ project.title || 'Без названия' }}</td>
+                <td>{{project.category}}</td>
                 <td>{{ project.client || '—' }}</td>
                 <td>{{ project.year || '—' }}</td>
                 <td>{{ project.createdAt | date:'dd.MM.yyyy' }}</td>

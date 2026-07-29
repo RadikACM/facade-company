@@ -50,32 +50,9 @@
       </div>
 
       <div class="services-overview-grid">
-        <article class="services-overview-card">
-          <span class="services-overview-number">01</span>
-          <h3>Проектирование</h3>
-          <p>
-            Выполняем замеры, разрабатываем раскладку панелей
-            и рассчитываем необходимое количество материалов.
-          </p>
-        </article>
-
-        <article class="services-overview-card">
-          <span class="services-overview-number">02</span>
-          <h3>Изготовление</h3>
-          <p>
-            Подготавливаем фасадные кассеты по точным размерам
-            объекта с соблюдением геометрии и технологии.
-          </p>
-        </article>
-
-        <article class="services-overview-card">
-          <span class="services-overview-number">03</span>
-          <h3>Монтаж</h3>
-          <p>
-            Устанавливаем подсистему, утепление и облицовку,
-            контролируя качество каждого этапа работ.
-          </p>
-        </article>
+        @for (service of services; track service.slug) {
+          <app-service-card [card]="service" />
+        }
       </div>
     </div>
   </section>
@@ -94,161 +71,9 @@
       </div>
 
       <div class="projects-grid">
-        <article class="project-card">
-          <div class="project-card-image">
-            <img
-              class="project-card-photo"
-              src="/images/hero-facade.jpg..png"
-              alt="Облицовка фасада частного дома"
-            >
-          </div>
-
-          <div class="project-card-content">
-            <h3 class="project-card-title">
-              Облицовка фасада частного дома
-            </h3>
-
-            <div class="project-card-meta">
-              <span class="project-card-category">Частный дом</span>
-              <span class="project-card-year">2026</span>
-            </div>
-
-            <p class="project-card-description">
-              Современная облицовка фасада алюминиевыми композитными панелями
-              с аккуратной геометрией и долговечным покрытием.
-            </p>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card-image">
-            <img
-              class="project-card-photo"
-              src="/images/hero-facade.jpg_1.png"
-              alt="Облицовка фасада частного дома"
-            >
-          </div>
-
-          <div class="project-card-content">
-            <h3 class="project-card-title">
-              Облицовка фасада частного дома
-            </h3>
-
-            <div class="project-card-meta">
-              <span class="project-card-category">Частный дом</span>
-              <span class="project-card-year">2026</span>
-            </div>
-
-            <p class="project-card-description">
-              Современная облицовка фасада алюминиевыми композитными панелями
-              с аккуратной геометрией и долговечным покрытием.
-            </p>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card-image">
-            <img
-              class="project-card-photo"
-              src="/images/hero-facade.jpg_2.png"
-              alt="Облицовка фасада частного дома"
-            >
-          </div>
-
-          <div class="project-card-content">
-            <h3 class="project-card-title">
-              Облицовка фасада частного дома
-            </h3>
-
-            <div class="project-card-meta">
-              <span class="project-card-category">Частный дом</span>
-              <span class="project-card-year">2026</span>
-            </div>
-
-            <p class="project-card-description">
-              Современная облицовка фасада алюминиевыми композитными панелями
-              с аккуратной геометрией и долговечным покрытием.
-            </p>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card-image">
-            <img
-              class="project-card-photo"
-              src="/images/hero-facade.jpg_3.png"
-              alt="Облицовка фасада частного дома"
-            >
-          </div>
-
-          <div class="project-card-content">
-            <h3 class="project-card-title">
-              Облицовка фасада частного дома
-            </h3>
-
-            <div class="project-card-meta">
-              <span class="project-card-category">Частный дом</span>
-              <span class="project-card-year">2026</span>
-            </div>
-
-            <p class="project-card-description">
-              Современная облицовка фасада алюминиевыми композитными панелями
-              с аккуратной геометрией и долговечным покрытием.
-            </p>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card-image">
-            <img
-              class="project-card-photo"
-              src="/images/hero-facade.jpg_4.png"
-              alt="Облицовка фасада частного дома"
-            >
-          </div>
-
-          <div class="project-card-content">
-            <h3 class="project-card-title">
-              Облицовка фасада частного дома
-            </h3>
-
-            <div class="project-card-meta">
-              <span class="project-card-category">Частный дом</span>
-              <span class="project-card-year">2026</span>
-            </div>
-
-            <p class="project-card-description">
-              Современная облицовка фасада алюминиевыми композитными панелями
-              с аккуратной геометрией и долговечным покрытием.
-            </p>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-card-image">
-            <img
-              class="project-card-photo"
-              src="/images/hero-facade.jpg_5.png"
-              alt="Облицовка фасада частного дома"
-            >
-          </div>
-
-          <div class="project-card-content">
-            <h3 class="project-card-title">
-              Облицовка фасада частного дома
-            </h3>
-
-            <div class="project-card-meta">
-              <span class="project-card-category">Частный дом</span>
-              <span class="project-card-year">2026</span>
-            </div>
-
-            <p class="project-card-description">
-              Современная облицовка фасада алюминиевыми композитными панелями
-              с аккуратной геометрией и долговечным покрытием.
-            </p>
-          </div>
-        </article>
+        @for (project of projects | async; track project.imageUrl) {
+          <app-project-card [project]="project" />
+        }
       </div>
     </div>
   </section>
@@ -267,71 +92,9 @@
       </div>
 
       <div class="news-preview-grid">
-        <article class="news-card">
-          <img
-            class="news-card-image"
-            src="/images/hero-facade.jpg_1.png"
-            alt="Монтаж алюминиевых композитных панелей"
-          >
-
-          <div class="news-card-content">
-            <time class="news-card-date" datetime="2026-07-28">
-              28 июля 2026
-            </time>
-
-            <h3 class="news-card-title">
-              Как проходит монтаж фасада из композитных панелей
-            </h3>
-
-            <a class="news-card-link" routerLink="/news">
-              Читать статью →
-            </a>
-          </div>
-        </article>
-
-        <article class="news-card">
-          <img
-            class="news-card-image"
-            src="/images/hero-facade.jpg_2.png"
-            alt="Выбор материалов для облицовки фасада"
-          >
-
-          <div class="news-card-content">
-            <time class="news-card-date" datetime="2026-07-20">
-              20 июля 2026
-            </time>
-
-            <h3 class="news-card-title">
-              Как выбрать материал для современного фасада
-            </h3>
-
-            <a class="news-card-link" routerLink="/news">
-              Читать статью →
-            </a>
-          </div>
-        </article>
-
-        <article class="news-card">
-          <img
-            class="news-card-image"
-            src="/images/hero-facade.jpg_3.png"
-            alt="Уход за облицованным фасадом"
-          >
-
-          <div class="news-card-content">
-            <time class="news-card-date" datetime="2026-07-12">
-              12 июля 2026
-            </time>
-
-            <h3 class="news-card-title">
-              Как сохранить внешний вид фасада на долгие годы
-            </h3>
-
-            <a class="news-card-link" routerLink="/news">
-              Читать статью →
-            </a>
-          </div>
-        </article>
+        @for (item of news | async; track item.publishedAt) {
+          <app-news-card [post]="item" />
+        }
       </div>
     </div>
   </section>
