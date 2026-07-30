@@ -4,38 +4,41 @@
       <img class="header-logo-image" src="/images/Logo.png" alt="Логотип FacadeHouse">
       <span>FacadeHouse</span>
     </a>
+
     <nav class="header-nav" [class.open]="isMenuOpen()">
-      <button routerLink="" routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Главная</button>
-      <button routerLink="/about"  routerLinkActive="active"  (click)="closeMenu()">О компании</button>
-      <button routerLink="contacts"  routerLinkActive="active"  (click)="closeMenu()">Контакты</button>
-      <button routerLink="services"  routerLinkActive="active"  (click)="closeMenu()">Услуги</button>
-      <button routerLink="projects"  routerLinkActive="active"  (click)="closeMenu()">Проекты</button>
-      <button routerLink="news"  routerLinkActive="active"  (click)="closeMenu()">Новости</button>
-   </nav>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">Главная</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">О компании</a>
+      <a routerLink="/contacts" routerLinkActive="active" (click)="closeMenu()">Контакты</a>
+      <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">Услуги</a>
+      <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">Проекты</a>
+      <a routerLink="/news" routerLinkActive="active" (click)="closeMenu()">Новости</a>
 
-   <div class="header-actions">
+      <!-- Экшены внутри навигации для мобилки -->
+      <div class="header-actions mobile-only">
+        @if (isAdmin()) {
+          <a routerLink="/admin" class="header__admin-link" (click)="closeMenu()">Админка</a>
+        }
+        <a routerLink="/contact" class="header-action" (click)="closeMenu()">Рассчитать стоимость</a>
+      </div>
+    </nav>
+
+    <!-- Экшены для десктопа -->
+    <div class="header-actions desktop-only">
       @if (isAdmin()) {
-      <a routerLink="/admin" class="header__admin-link">
-        Админка
-      </a>
+        <a routerLink="/admin" class="header__admin-link">Админка</a>
       }
+      <a routerLink="/contact" class="header-action">Рассчитать стоимость</a>
+    </div>
 
-      <a class="header-action" routerLink="/contact">Рассчитать стоимость</a>
-   </div>
-
-   <button class="header-burger"
-    type="button" aria-label="Открыть меню"
-     (click)="toggleMenu()"
+    <button class="header-burger"
+      type="button" 
+      aria-label="Открыть меню"
+      (click)="toggleMenu()"
       [class.active]="isMenuOpen()"
-       [attr.aria-expanded]="isMenuOpen()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      [attr.aria-expanded]="isMenuOpen()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>
-
-
-
-
-
