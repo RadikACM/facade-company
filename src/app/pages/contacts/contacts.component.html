@@ -1,47 +1,258 @@
-<section class="contacts-section">
-  @if (contacts$ | async; as contacts) {
-    <div class="contacts-card">
-      <h2>Наши контакты</h2>
+<section class="contact-page">
+  <div class="container">
+    <!-- Заголовок страницы -->
+    <header class="contact-header">
+      <h1 class="page-title">Контакты</h1>
+      <p class="page-subtitle">
+        Свяжитесь с нами удобным способом или отправьте параметры вашего объекта
+        для быстрого расчёта стоимости.
+      </p>
+    </header>
 
-      <div class="info-list">
-        <div class="info-item">
-          <span class="label">Телефон:</span>
-          <a [href]="'tel:' + contacts.phone" class="value">{{ contacts.phone }}</a>
-        </div>
+    <div class="contact-grid">
+      <!-- Блок с контактной информацией -->
+      <aside class="contact-info-card">
+        <h2>Наши контакты</h2>
 
-        <div class="info-item">
-          <span class="label">WhatsApp:</span>
-          <a [href]="'https://wa.me/' + contacts.phoneWp" target="_blank" class="value">{{ contacts.phoneWp }}</a>
-        </div>
+        @if (contacts(); as data) {
+          <ul class="contact-list">
+            <!-- Телефон -->
+            @if (data.phone) {
+              <li class="contact-item">
+                <div class="icon-wrapper">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                </div>
+                <div class="contact-detail">
+                  <span class="label">Телефон</span>
+                  <a [href]="'tel:' + data.phone" class="value link">{{
+                    data.phone
+                  }}</a>
+                </div>
+              </li>
+            }
 
-        <div class="info-item">
-          <span class="label">Email:</span>
-          <a [href]="'mailto:' + contacts.email" class="value">{{ contacts.email }}</a>
-        </div>
+            <!-- WhatsApp -->
+            @if (data.phoneWp) {
+              <li class="contact-item">
+                <div class="icon-wrapper whatsapp">
+                  <img style="width: 2rem;" src="/icons/whatsapp.svg" alt="" />
+                </div>
+                <div class="contact-detail">
+                  <span class="label">WhatsApp</span>
+                  <a
+                    [href]="'https://wa.me/' + getCleanNumber(data.phoneWp)"
+                    target="_blank"
+                    class="value link"
+                  >
+                    {{ data.phoneWp }}
+                  </a>
+                </div>
+              </li>
+            }
 
-        <div class="info-item">
-          <span class="label">Адрес:</span>
-          <a [href]="contacts.adressUrl" target="_blank" class="value">{{ contacts.address }}</a>
-        </div>
+            @if (data.instagramUrl) {
+              <li class="contact-item">
+                <div class="icon-wrapper whatsapp">
+                  <img style="width: 2rem" src="/icons/instagram.svg" alt="" />
+                </div>
+                <div class="contact-detail">
+                  <span class="label">Instagram</span>
+                  <a
+                    [href]="
+                      'https://www.instagram.com/' + getCleanNumber(data.instagramUrl)
+                    "
+                    target="_blank"
+                    class="value link"
+                  >
+                    {{ data.instagramUrl }}
+                  </a>
+                </div>
+              </li>
+            }
 
-        <div class="info-item">
-          <span class="label">Режим работы:</span>
-          <span class="value">{{ contacts.workingHours }}</span>
-        </div>
-      </div>
+            <!-- Email -->
+            @if (data.email) {
+              <li class="contact-item">
+                <div class="icon-wrapper">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                </div>
+                <div class="contact-detail">
+                  <span class="label">Email</span>
+                  <a [href]="'mailto:' + data.email" class="value link">{{
+                    data.email
+                  }}</a>
+                </div>
+              </li>
+            }
 
-      @if (contacts.instagramUrl || contacts.facebookUrl) {
-        <div class="socials">
-          @if (contacts.instagramUrl) {
-            <a [href]="contacts.instagramUrl" target="_blank" class="social-link">Instagram</a>
-          }
-          @if (contacts.facebookUrl) {
-            <a [href]="contacts.facebookUrl" target="_blank" class="social-link">Facebook</a>
-          }
-        </div>
-      }
+            <!-- Адрес -->
+            @if (data.address) {
+              <li class="contact-item">
+                <div class="icon-wrapper">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div class="contact-detail">
+                  <span class="label">Офис / Адрес</span>
+                  <span class="value">{{ data.address }}</span>
+                </div>
+              </li>
+            }
+
+            <!-- Режим работы (если есть в объекте) -->
+            @if (data.workingHours) {
+              <li class="contact-item">
+                <div class="icon-wrapper">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </div>
+                <div class="contact-detail">
+                  <span class="label">Режим работы</span>
+                  <span class="value">{{ data.workingHours }}</span>
+                </div>
+              </li>
+            }
+          </ul>
+        } @else {
+          <p class="loading-state">Загрузка контактной информации...</p>
+        }
+      </aside>
+
+      <!-- Форма заявки в WhatsApp -->
+      <main class="contact-form-card">
+        <h2>Рассчитать стоимость фасада</h2>
+        <p class="form-desc">
+          Заполните форму ниже — сформируем предварительную смету и отправим её
+          в WhatsApp.
+        </p>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="wa-form">
+          <div class="form-group">
+            <label for="name">Ваше имя *</label>
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Например, Александр"
+              [class.error]="
+                form.get('name')?.invalid && form.get('name')?.touched
+              "
+            />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="objectType">Тип объекта *</label>
+              <select id="objectType" formControlName="objectType">
+                <option value="Частный дом / Коттедж">
+                  Частный дом / Коттедж
+                </option>
+                <option value="Коммерческое здание">
+                  Коммерческое здание (ТЦ, Офис)
+                </option>
+                <option value="Жилой комплекс">Жилой комплекс</option>
+                <option value="Реконструкция фасада">
+                  Реконструкция / Замена
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="area">Площадь фасада (м²) *</label>
+              <input
+                id="area"
+                type="number"
+                formControlName="area"
+                placeholder="150"
+                [class.error]="
+                  form.get('area')?.invalid && form.get('area')?.touched
+                "
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="comment">Пожелания по материалам или деталям</label>
+            <textarea
+              id="comment"
+              formControlName="comment"
+              rows="4"
+              placeholder="Например: интересен керамогранит или АКП панели бронзового оттенка..."
+            ></textarea>
+          </div>
+
+          <button type="submit" [disabled]="form.invalid" class="btn-submit-wa">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+              <path
+                d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"
+              />
+            </svg>
+            <span>Отправить расчёт в WhatsApp</span>
+          </button>
+        </form>
+      </main>
     </div>
-  } @else {
-    <p class="loading">Загрузка контактов...</p>
-  }
+  </div>
 </section>
