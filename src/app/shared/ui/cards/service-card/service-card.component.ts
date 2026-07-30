@@ -11,4 +11,5 @@ import { RouterLink } from '@angular/router';
 export class ServiceCardComponent {
   @Input({ required: true }) card!: Service;
   @Input() showFullDescription: boolean = false;
+  @Input() index: number = 1;
 }

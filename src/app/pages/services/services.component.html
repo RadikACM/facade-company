@@ -1,30 +1,120 @@
-<section class="services-section">
-  <div class="container">
-    <h2>Наши услуги</h2>
+<div class="services-page">
+  <section
+    class="services-hero"
+    aria-labelledby="services-page-title"
+  >
+    <div class="container">
+      <div class="services-hero__content">
+        <p class="services-hero__label">FacadeHouse / Услуги</p>
 
-    <div class="services-grid">
-      @for (item of services(); track item.id) {
-        @if (item.isPublished) {
-          <div class="service-card">
-            @if (item.imageUrl) {
-              <div class="icon-box">
-                <img [src]="item.imageUrl" [alt]="item.title" loading="lazy" />
-              </div>
-            }
+        <h1
+          id="services-page-title"
+          class="services-hero__title"
+        >
+          Фасадные решения под ключ
+        </h1>
 
-            <div class="details">
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.shortDescription }}</p>
+        <p class="services-hero__description">
+          Проектируем, изготавливаем и монтируем фасадные системы из
+          алюминиевых композитных панелей для частных и коммерческих объектов.
+        </p>
 
-              <div class="badge-delivery">
-                Срок выполнения: <strong>~ {{ item.deliveryWeeks }} нед.</strong>
-              </div>
-            </div>
-          </div>
-        }
-      } @empty {
-        <p class="empty">Список услуг пока пуст.</p>
+        <ul
+          class="services-hero__facts"
+          aria-label="Преимущества работы"
+        >
+          <li class="services-hero__fact">
+            <strong>Полный цикл</strong>
+            <span>От замера до монтажа</span>
+          </li>
+
+          <li class="services-hero__fact">
+            <strong>Точный расчёт</strong>
+            <span>Материалы, сроки и этапы</span>
+          </li>
+
+          <li class="services-hero__fact">
+            <strong>Контроль качества</strong>
+            <span>На каждом этапе работ</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="services-catalog"
+    aria-labelledby="services-catalog-title"
+  >
+    <div class="container">
+      <div class="services-catalog__header">
+        <div class="services-catalog__heading">
+          <p class="services-catalog__label">Направления работ</p>
+
+          <h2
+            id="services-catalog-title"
+            class="services-catalog__title"
+          >
+            Выберите подходящую услугу
+          </h2>
+        </div>
+
+        <p class="services-catalog__intro">
+          Каждую задачу начинаем с изучения объекта и подбираем решение под
+          архитектуру, условия эксплуатации и бюджет проекта.
+        </p>
+      </div>
+
+      @if (services$ | async; as services) {
+        <div class="services-grid">
+          @for (service of services; track service.id; let index = $index) {
+            <app-service-card
+              [card]="service"
+              [index]="index + 1"
+              [showFullDescription]="true"
+            ></app-service-card>
+          } @empty {
+            <p class="empty">Услуги пока не добавлены.</p>
+          }
+        </div>
+      } @else {
+        <p
+          class="services-loading"
+          role="status"
+          aria-live="polite"
+        >
+          Загружаем услуги…
+        </p>
       }
     </div>
-  </div>
-</section>
+  </section>
+
+  <section
+    class="services-cta"
+    aria-labelledby="services-cta-title"
+  >
+    <div class="container">
+      <div class="services-cta__box">
+        <div class="services-cta__content">
+          <p class="services-cta__label">Нужна консультация?</p>
+
+          <h2
+            id="services-cta-title"
+            class="services-cta__title"
+          >
+            Подберём фасадное решение для вашего объекта
+          </h2>
+
+          <p class="services-cta__text">
+            Расскажите о задаче — уточним детали, предложим подходящий материал
+            и рассчитаем предварительную стоимость работ.
+          </p>
+        </div>
+
+        <a class="services-cta__button" routerLink="/contacts">
+          Рассчитать стоимость
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
