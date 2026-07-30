@@ -49,13 +49,18 @@
             @if (data.phoneWp) {
               <li class="contact-item">
                 <div class="icon-wrapper whatsapp">
-                  <img style="width: 2rem;" src="/icons/whatsapp.svg" alt="" />
+                  <img
+                    class="contact-icon-image"
+                    src="/icons/whatsapp.svg"
+                    alt=""
+                  />
                 </div>
                 <div class="contact-detail">
                   <span class="label">WhatsApp</span>
                   <a
                     [href]="'https://wa.me/' + getCleanNumber(data.phoneWp)"
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="value link"
                   >
                     {{ data.phoneWp }}
@@ -67,7 +72,11 @@
             @if (data.instagramUrl) {
               <li class="contact-item">
                 <div class="icon-wrapper whatsapp">
-                  <img style="width: 2rem" src="/icons/instagram.svg" alt="" />
+                  <img
+                    class="contact-icon-image"
+                    src="/icons/instagram.svg"
+                    alt=""
+                  />
                 </div>
                 <div class="contact-detail">
                   <span class="label">Instagram</span>
@@ -76,6 +85,7 @@
                       'https://www.instagram.com/' + getCleanNumber(data.instagramUrl)
                     "
                     target="_blank"
+                    rel="noopener noreferrer"
                     class="value link"
                   >
                     {{ data.instagramUrl }}
@@ -170,8 +180,11 @@
       </aside>
 
       <!-- Форма заявки в WhatsApp -->
-      <main class="contact-form-card">
-        <h2>Рассчитать стоимость фасада</h2>
+      <section
+        class="contact-form-card"
+        aria-labelledby="contact-form-title"
+      >
+        <h2 id="contact-form-title">Рассчитать стоимость фасада</h2>
         <p class="form-desc">
           Заполните форму ниже — сформируем предварительную смету и отправим её
           в WhatsApp.
@@ -213,6 +226,8 @@
               <input
                 id="area"
                 type="number"
+                min="1"
+                inputmode="decimal"
                 formControlName="area"
                 placeholder="150"
                 [class.error]="
@@ -252,7 +267,7 @@
             <span>Отправить расчёт в WhatsApp</span>
           </button>
         </form>
-      </main>
+      </section>
     </div>
   </div>
 </section>
