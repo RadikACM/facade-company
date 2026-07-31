@@ -12,13 +12,14 @@
       <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">Услуги</a>
       <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">Проекты</a>
       <a routerLink="/news" routerLinkActive="active" (click)="closeMenu()">Новости</a>
+      <a routerLink="/reviews" routerLinkActive="active" (click)="closeMenu()">Отзывы</a>
 
       <!-- Экшены внутри навигации для мобилки -->
       <div class="header-actions mobile-only">
         @if (isAdmin()) {
           <a routerLink="/admin" class="header__admin-link" (click)="closeMenu()">Админка</a>
         }
-        <a routerLink="/contact" class="header-action" (click)="closeMenu()">Рассчитать стоимость</a>
+        <a routerLink="/contacts" class="header-action" (click)="closeMenu()">Рассчитать стоимость</a>
       </div>
     </nav>
 
@@ -27,12 +28,11 @@
       @if (isAdmin()) {
         <a routerLink="/admin" class="header__admin-link">Админка</a>
       }
-      <a routerLink="/contact" class="header-action">Рассчитать стоимость</a>
+      <a routerLink="/contacts" class="header-action">Рассчитать стоимость</a>
     </div>
 
     <button class="header-burger"
-      type="button" 
-      aria-label="Открыть меню"
+      type="button" aria-label="Открыть меню"
       (click)="toggleMenu()"
       [class.active]="isMenuOpen()"
       [attr.aria-expanded]="isMenuOpen()">

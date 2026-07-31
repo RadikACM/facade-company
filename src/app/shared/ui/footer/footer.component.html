@@ -11,20 +11,20 @@
           Облицовка фасадов алюминиевыми композитными панелями для коммерческих и частных объектов.</p>
       </div>
 
-      <nav class="footer-nav">
+      <nav class="footer-nav" aria-label="Навигация в подвале сайта">
         <h3 class="footer-title">Навигация</h3>
         <a routerLink="/">Главная</a>
         <a routerLink="/about">О компании</a>
-        <a routerLink="/services">Контакты</a>
-        <a routerLink="/projects">Услуги</a>
-        <a routerLink="/contact">Проекты</a>
+        <a routerLink="/contacts">Контакты</a>
+        <a routerLink="/services">Услуги</a>
+        <a routerLink="/projects">Проекты</a>
         <a routerLink="/news">Новости</a>
       </nav>
 
       <div class="footer-contacts">
         <h3 class="footer-title">Контакты</h3>
         <a [href]="'tel:'+ (contacts$ | async)?.phone" class="footer-contact">{{ (contacts$ | async)?.phone }}</a>
-        <a [href]="'email:'+ (contacts$ | async)?.email" class="footer-contact">{{ (contacts$ | async)?.email }}</a>
+        <a [href]="'mailto:'+ (contacts$ | async)?.email" class="footer-contact">{{ (contacts$ | async)?.email }}</a>
         <address class="footer-address">г. Москва</address>
       </div>
     </div>
