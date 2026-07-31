@@ -14,17 +14,11 @@
         </p>
 
         <div class="hero-actions">
-          <a
-            class="hero-button hero-button-primary"
-            routerLink="/contacts"
-          >
+          <a class="hero-button hero-button-primary" routerLink="/contacts">
             Рассчитать стоимость
           </a>
 
-          <a
-            class="hero-button hero-button-secondary"
-            href="#projects"
-          >
+          <a class="hero-button hero-button-secondary" href="#projects">
             Посмотреть проекты
           </a>
         </div>
@@ -50,8 +44,8 @@
       </div>
 
       <div class="services-overview-grid">
-        @for (service of services | async; track service.slug) {
-          <app-service-card [card]="service" />
+        @for (service of services().slice(0, 3); track service.slug) {
+        <app-service-card [card]="service" />
         }
       </div>
     </div>
@@ -71,8 +65,8 @@
       </div>
 
       <div class="projects-grid">
-        @for (project of projects | async; track project.imageUrl) {
-          <app-project-card [project]="project" />
+        @for (project of projects().slice(0, 3); track project.imageUrl) {
+        <app-project-card [project]="project" />
         }
       </div>
     </div>
@@ -92,8 +86,29 @@
       </div>
 
       <div class="news-preview-grid">
-        @for (item of news | async; track item.publishedAt) {
-          <app-news-card [post]="item" />
+        @for (item of news().slice(0, 3); track item.publishedAt) {
+        <app-news-card [post]="item" />
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="news-preview">
+    <div class="container">
+      <div class="news-preview-header">
+        <div>
+          <p class="news-preview-label">Мнения о нашей работе</p>
+          <h2 class="news-preview-title">Результаты, которыми довольны заказчики</h2>
+        </div>
+
+        <a class="news-preview-link" routerLink="/news">
+          Все отзывы
+        </a>
+      </div>
+
+      <div class="news-preview-grid">
+        @for (review of reviews().slice(0, 3); track review.createdAt) {
+        <app-review-card [review]="review" />
         }
       </div>
     </div>
@@ -114,17 +129,11 @@
         </p>
 
         <div class="contact-cta-actions">
-          <a
-            class="contact-cta-button primary"
-            routerLink="/contacts"
-          >
+          <a class="contact-cta-button primary" routerLink="/contacts">
             Рассчитать стоимость
           </a>
 
-          <a
-            class="contact-cta-button secondary"
-            href="#projects"
-          >
+          <a class="contact-cta-button secondary" href="#projects">
             Посмотреть проекты
           </a>
         </div>

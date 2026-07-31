@@ -32,54 +32,10 @@
       </div>
 
       <div class="reviews-grid">
-        <article class="review-card">
-          <div class="review-card__rating" aria-label="Оценка 5 из 5">
-            ★★★★★
-          </div>
-
-          <blockquote class="review-card__text">
-            Фасад выполнили аккуратно и в согласованный срок. Помогли выбрать
-            подходящий материал и подробно объяснили каждый этап работы.
-          </blockquote>
-
-          <div class="review-card__author">
-            <strong>Александр</strong>
-            <span>Частный дом</span>
-          </div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-card__rating" aria-label="Оценка 5 из 5">
-            ★★★★★
-          </div>
-
-          <blockquote class="review-card__text">
-            Заказывали облицовку коммерческого здания. Результат полностью
-            соответствует проекту, объект выглядит современно и аккуратно.
-          </blockquote>
-
-          <div class="review-card__author">
-            <strong>Михаил</strong>
-            <span>Коммерческий объект</span>
-          </div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-card__rating" aria-label="Оценка 5 из 5">
-            ★★★★★
-          </div>
-
-          <blockquote class="review-card__text">
-            Понравился профессиональный подход: точный расчёт, соблюдение
-            сроков и постоянная связь во время выполнения работ.
-          </blockquote>
-
-          <div class="review-card__author">
-            <strong>Руслан</strong>
-            <span>Офисное здание</span>
-          </div>
-        </article>
-      </div>
+  @for (review of reviews | async; track review.id ?? review.authorName) {
+    <app-review-card [review]="review"></app-review-card>
+  }
+</div>
     </div>
   </section>
 

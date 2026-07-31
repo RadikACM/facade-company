@@ -1,0 +1,19 @@
+<article class="review-card">
+      <div 
+        class="review-card__rating" 
+        [attr.aria-label]="'Оценка ' + review.rating + ' из 5'"
+      >
+        @for (star of getStars(); track star) {
+          <span class="star" [class.filled]="star <= review.rating">★</span>
+        }
+      </div>
+
+      <blockquote class="review-card__text">
+        {{ review.text }}
+      </blockquote>
+
+      <div class="review-card__author">
+        <strong>{{ review.authorName }}</strong>
+        <span>{{ review.objectType }}</span>
+      </div>
+    </article>
