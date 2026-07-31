@@ -15,10 +15,8 @@ export class ContactsComponent {
 private fb = inject(FormBuilder);
   private contactService = inject(ContactService);
 
-  // Получаем контакты из Firestore в виде Сигнала
   readonly contacts = toSignal(this.contactService.getContacts(), { initialValue: null });
 
-  // Форма для сборки параметров
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
     objectType: ['Частный дом / Коттедж', [Validators.required]],
@@ -26,11 +24,24 @@ private fb = inject(FormBuilder);
     comment: ['']
   });
 
-  // Функция очистки номера от лишних символов для wa.me ссылки
   getCleanNumber(phone: string | undefined): string {
     if (!phone) return '';
     return phone.replace(/\D/g, '');
   }
+
+  getInstagramUrl(input: string | undefined): string {
+  if (!input) return '';
+
+  const trimmed = input.trim();
+
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+
+  const cleanUsername = trimmed.replace(/^@/, '');
+
+  return `https://instagram.com/${cleanUsername}`;
+}
 
   onSubmit(): void {
     if (this.form.invalid) return;

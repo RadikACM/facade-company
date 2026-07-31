@@ -66,14 +66,14 @@
 
             @if (data.instagramUrl) {
               <li class="contact-item">
-                <div class="icon-wrapper whatsapp">
+                <div class="icon-wrapper instagram">
                   <img style="width: 2rem" src="/icons/instagram.svg" alt="" />
                 </div>
                 <div class="contact-detail">
                   <span class="label">Instagram</span>
                   <a
                     [href]="
-                      'https://www.instagram.com/' + getCleanNumber(data.instagramUrl)
+                      getInstagramUrl(data.instagramUrl)
                     "
                     target="_blank"
                     class="value link"
