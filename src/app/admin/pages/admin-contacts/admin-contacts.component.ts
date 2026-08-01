@@ -27,7 +27,8 @@ export class AdminContactsComponent implements OnInit, OnDestroy {
     address: ['', Validators.required],
     adressUrl: ['', Validators.required],
     workingHours: ['', Validators.required],
-    instagramUrl: ['']
+    instagramUrl: [''],
+    telegramUrl: [''],
   });
 
   ngOnInit(): void {

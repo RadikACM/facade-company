@@ -49,6 +49,16 @@
       </label>
 
       <label class="field">
+        <span class="field__label">Telegram</span>
+        <input
+          class="field__input"
+          type="text"
+          formControlName="telegramUrl"
+          placeholder="@username"
+        />
+      </label>
+
+      <label class="field">
         <span class="field__label">Часы работы</span>
         <input
           class="field__input"
@@ -113,6 +123,14 @@
           <div>
             <span>Instagram</span>
             <strong>{{ form.value.instagramUrl }}</strong>
+          </div>
+        </article>
+
+        <article class="preview-card preview-card--telegram">
+          <img src="/icons/telegram.svg" alt="" />
+          <div>
+            <span>Telegram</span>
+            <strong>{{ form.value.telegramUrl }}</strong>
           </div>
         </article>
 
