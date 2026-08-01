@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     // Firestore без inject(...)
     provideFirestore(() => getFirestore()),
     provideMarkdown(),
-    provideStorage(() => getStorage()),,
+    provideStorage(() => getStorage()),
     provideAuth(() => getAuth()),
   ],
 };
