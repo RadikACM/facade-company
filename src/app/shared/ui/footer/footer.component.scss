@@ -115,23 +115,24 @@
 
 .footer-socials {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-end;
   gap: 12px;
-
+  max-width: 100%;
   margin-top: 18px;
 }
 
 .footer-socials a {
   display: inline-flex;
+  flex: 0 0 44px;
   align-items: center;
   justify-content: center;
-
-  width: 42px;
-  height: 42px;
-
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--border);
   border-radius: 10px;
-
   overflow: hidden;
   transition:
     transform 0.3s ease,
@@ -204,6 +205,11 @@
     justify-self: start;
     align-items: flex-start;
     text-align: left;
+  }
+
+  .footer-socials {
+    justify-content: flex-start;
+    column-gap: 10px;
   }
 
   .footer-description {
