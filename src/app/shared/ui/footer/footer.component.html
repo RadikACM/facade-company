@@ -26,12 +26,25 @@
         <a [href]="'tel:'+ (contacts$ | async)?.phone" class="footer-contact">{{ (contacts$ | async)?.phone }}</a>
         <a [href]="'mailto:'+ (contacts$ | async)?.email" class="footer-contact">{{ (contacts$ | async)?.email }}</a>
         <address class="footer-address">г. Москва</address>
+
+        @if (contacts$ | async; as contact) {
+           <div class="footer-socials">
+          <a [href]="contact.telegramUrl" target="_blank">
+            <img src="/icons/telegram.svg" class="footer-socials__icon" alt="Иконка Telegram">
+          </a>
+          <a [href]="contact.whatsappUrl"  target="_blank">
+            <img src="/icons/whatsapp.svg" class="footer-socials__icon" alt="Иконка Whatsapp">
+          </a>
+          <a [href]="contact.instagramUrl" target="_blank">
+            <img src="/icons/instagram.svg" class="footer-socials__icon" alt="Иконка Instagram">
+          </a>
+        </div>
+        }
       </div>
     </div>
 
     <div class="footer-bottom">
       <small>© 2026 FacadeHouse. Все права защищены.</small>
     </div>
-
   </div>
 </footer>
