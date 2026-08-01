@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Auth, authState, user } from '@angular/fire/auth';
-import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword, signOut, User } from 'firebase/auth';
+import { browserLocalPersistence, setPersistence, signInWithEmailAndPassword, signOut, User, UserCredential } from 'firebase/auth';
 import { map, take } from 'rxjs/operators';
 
 @Injectable({
@@ -11,11 +11,11 @@ export class AuthService {
 
     private readonly ADMIN_EMAILS = [
         'kusurait@gmail.com',
-        'radikalimov2016@gmail.com',
+        'radikalimovmisr2016@gmail.com',
         'umarbaygullin096@gmail.com',
     ];
 
-    private readonly _isAdmin = signal(false);
+    private readonly _isAdmin = signal<boolean>(false);
     readonly isAdmin = this._isAdmin.asReadonly();
 
     constructor() {
@@ -29,7 +29,10 @@ export class AuthService {
     }
 
     private isAdminEmail(currentUser: User | null): boolean {
-        return this.ADMIN_EMAILS.includes(currentUser?.email ?? '');
+        if (!currentUser?.email) return false;
+
+        const cleanEmail = currentUser.email.trim().toLowerCase();
+        return this.ADMIN_EMAILS.map(e => e.trim().toLowerCase()).includes(cleanEmail);
     }
 
     canActivateAdmin() {
@@ -39,9 +42,14 @@ export class AuthService {
         );
     }
 
-    async login(email: string, password: string): Promise<void> {
+    async login(email: string, password: string): Promise<UserCredential> {
         await setPersistence(this.auth, browserLocalPersistence);
-        await signInWithEmailAndPassword(this.auth, email, password);
+        return await signInWithEmailAndPassword(this.auth, email.trim().toLowerCase(), password);
+    }
+
+    // Добавьте публичный метод проверки email для удобства
+    public isUserAdmin(currentUser: User | null): boolean {
+        return this.isAdminEmail(currentUser);
     }
 
     async logout(): Promise<void> {

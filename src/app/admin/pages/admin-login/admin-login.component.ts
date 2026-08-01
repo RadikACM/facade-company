@@ -25,8 +25,11 @@ export class AdminLoginComponent {
     this.isSubmitting.set(true);
 
     try {
-      await this.authService.login(this.email.trim(), this.password);
-      const isAllowedAdmin = await this.authService.checkIsAdminNow(); 
+      // 1. Входим и получаем объект UserCredential
+      const userCredential = await this.authService.login(this.email.trim().toLowerCase(), this.password);
+
+      // 2. Проверяем email пользователя напрямую из ответа Firebase
+      const isAllowedAdmin = this.authService.isUserAdmin(userCredential.user);
 
       if (!isAllowedAdmin) {
         await this.authService.logout();
@@ -36,7 +39,13 @@ export class AdminLoginComponent {
 
       await this.router.navigate(['/admin']);
     } catch (err: any) {
-      this.error.set('Неверный email или пароль.');
+      console.error('Login error:', err);
+      // Обработка конкретных ошибок Firebase (опционально)
+      if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found') {
+        this.error.set('Неверный email или пароль.');
+      } else {
+        this.error.set('Произошла ошибка при входе. Попробуйте снова.');
+      }
     } finally {
       this.isSubmitting.set(false);
     }

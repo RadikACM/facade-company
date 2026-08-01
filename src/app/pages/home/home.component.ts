@@ -5,7 +5,6 @@ import { ProjectService } from '../../core/services/project.service';
 import { NewsService } from '../../core/services/news.service';
 import { NewsCardComponent } from "../../shared/ui/cards/news-card/news-card.component";
 import { ServiceCardComponent } from "../../shared/ui/cards/service-card/service-card.component";
-import { AsyncPipe } from '@angular/common';
 import { ProjectCardComponent } from "../../shared/ui/cards/project-card/project-card.component";
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReviewService } from '../../core/services/reviews.service';
@@ -13,7 +12,7 @@ import { ReviewCardComponent } from "../../shared/ui/cards/review-card/review-ca
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, NewsCardComponent, ServiceCardComponent, AsyncPipe, ProjectCardComponent, ReviewCardComponent],
+  imports: [RouterLink, NewsCardComponent, ServiceCardComponent, ProjectCardComponent, ReviewCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
