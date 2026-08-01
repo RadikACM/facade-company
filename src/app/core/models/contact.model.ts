@@ -6,5 +6,7 @@ export interface ContactData {
   adressUrl: string;
   workingHours: string;
   instagramUrl?: string;
+  telegramUrl?: string;
+  whatsappUrl?: string;
   facebookUrl?: string;
 }
