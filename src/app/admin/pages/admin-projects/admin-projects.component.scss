@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: center;
   padding: 0.625rem 1.25rem;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -125,7 +125,7 @@
 }
 
 .modal-container {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-main);
   border: 1px solid var(--border);
   border-radius: 12px;
   width: 100%;
@@ -391,7 +391,7 @@ textarea.form-control {
 
 /* Data Card & Table */
 .data-card {
-  background-color: var(--bg-card);
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1.5rem;
