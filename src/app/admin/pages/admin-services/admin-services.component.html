@@ -13,123 +13,97 @@
 
   <!-- Модальное окно для создания / редактирования услуги -->
   @if (isModalOpen()) {
-    <div class="modal-overlay" (click)="closeModal()">
-      <div class="modal-container" (click)="$event.stopPropagation()">
-        <div class="modal-header">
-          <h3 class="modal-title">
-            {{ isEditing() ? 'Редактирование услуги' : 'Добавление новой услуги' }}
-          </h3>
-          <button class="modal-close-btn" (click)="closeModal()">
-            &times;
-          </button>
-        </div>
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          {{ isEditing() ? 'Редактирование услуги' : 'Добавление новой услуги' }}
+        </h3>
+        <button class="modal-close-btn" (click)="closeModal()">
+          &times;
+        </button>
+      </div>
 
-        <form
-          class="admin-form"
-          [formGroup]="serviceForm"
-          (ngSubmit)="submitForm()"
-        >
-          <div class="modal-content">
-            <div class="form-grid">
-              <!-- Название -->
-              <div class="form-group full-width">
-                <label>Название услуги</label>
-                <input
-                  type="text"
-                  formControlName="title"
-                  placeholder="Например: Разработка интернет-магазина"
-                />
-              </div>
+      <form class="admin-form" [formGroup]="serviceForm" (ngSubmit)="submitForm()">
+        <div class="modal-content">
+          <div class="form-grid">
+            <!-- Название -->
+            <div class="form-group full-width">
+              <label>Название услуги</label>
+              <input type="text" formControlName="title" placeholder="Например: Разработка интернет-магазина" />
+            </div>
 
-              <!-- ЧПУ (Slug) -->
-              <div class="form-group full-width">
-                <label>Slug (URL-адрес)</label>
-                <input
-                  type="text"
-                  formControlName="slug"
-                  placeholder="e-commerce-development"
-                />
-              </div>
+            <!-- ЧПУ (Slug) -->
+            <div class="form-group full-width">
+              <label>Slug (URL-адрес)</label>
+              <input type="text" formControlName="slug" placeholder="e-commerce-development" />
+            </div>
 
-              <!-- Краткое описание -->
-              <div class="form-group full-width">
-                <label>Краткое описание</label>
-                <textarea
-                  rows="2"
-                  formControlName="shortDescription"
-                  placeholder="Краткое описание для карточки..."
-                ></textarea>
-              </div>
+            <!-- Краткое описание -->
+            <div class="form-group full-width">
+              <label>Краткое описание</label>
+              <textarea rows="2" formControlName="shortDescription"
+                placeholder="Краткое описание для карточки..."></textarea>
+            </div>
 
-              <!-- Полное описание -->
-              <div class="form-group full-width">
-                <label>Полное описание</label>
-                <textarea
-                  rows="4"
-                  formControlName="description"
-                  placeholder="Подробное описание услуги..."
-                ></textarea>
-              </div>
+            <!-- Полное описание -->
+            <div class="form-group full-width">
+              <label>Полное описание</label>
+              <textarea rows="4" formControlName="description" placeholder="Подробное описание услуги..."></textarea>
+            </div>
+            
+            <!-- Изображение -->
+            <div class="form-group full-width">
+              <label class="form-label">Изображение услуги</label>
 
-              <!-- Ссылка на изображение -->
-              <div class="form-group full-width">
-                <label>Изображение (URL)</label>
-                <input
-                  type="text"
-                  formControlName="imageUrl"
-                  placeholder="https://example.com/image.jpg"
-                />
-              </div>
+              <input type="file" #serviceFileInput (change)="onFileSelected($event)" accept="image/*" hidden />
 
-              <!-- Срок выполнения -->
-              <div class="form-group">
-                <label>Срок выполнения (недели)</label>
-                <input
-                  type="number"
-                  formControlName="deliveryWeeks"
-                  placeholder="4"
-                />
-              </div>
-
-              <!-- Порядок сортировки -->
-              <div class="form-group">
-                <label>Порядок (сортировка)</label>
-                <input
-                  type="number"
-                  formControlName="order"
-                  placeholder="0"
-                />
-              </div>
-
-              <!-- Опубликовано -->
-              <div class="form-group full-width checkbox-group">
-                <label class="checkbox-label">
-                  <input type="checkbox" formControlName="isPublished" />
-                  <span>Опубликовать на сайте</span>
-                </label>
+              <div class="upload-zone" (click)="serviceFileInput.click()" [class.loading]="isUploading()">
+                @if (!serviceForm.value.imageUrl) {
+                <span class="icon">
+                  <img src="/icons/build.svg" alt="" />
+                </span>
+                <p>{{ isUploading() ? 'Загрузка...' : 'Нажмите, чтобы выбрать обложку услуги' }}</p>
+                } @else {
+                <img [src]="serviceForm.value.imageUrl" class="preview-img" alt="Превью услуги" />
+                <div class="change-overlay">Изменить изображение</div>
+                }
               </div>
             </div>
-          </div>
 
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              (click)="closeModal()"
-            >
-              Отмена
-            </button>
-            <button
-              type="submit"
-              [disabled]="serviceForm.invalid"
-              class="btn btn-primary"
-            >
-              {{ isEditing() ? 'Сохранить изменения' : 'Добавить услугу' }}
-            </button>
+            <!-- Срок выполнения -->
+            <div class="form-group">
+              <label>Срок выполнения (недели)</label>
+              <input type="number" formControlName="deliveryWeeks" placeholder="4" />
+            </div>
+
+            <!-- Порядок сортировки -->
+            <div class="form-group">
+              <label>Порядок (сортировка)</label>
+              <input type="number" formControlName="order" placeholder="0" />
+            </div>
+
+            <!-- Опубликовано -->
+            <div class="form-group full-width checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" formControlName="isPublished" />
+                <span>Опубликовать на сайте</span>
+              </label>
+            </div>
           </div>
-        </form>
-      </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">
+            Отмена
+          </button>
+          <button type="submit" [disabled]="serviceForm.invalid" class="btn btn-primary">
+            {{ isEditing() ? 'Сохранить изменения' : 'Добавить услугу' }}
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
   }
 
   <!-- Список услуг -->
@@ -139,80 +113,37 @@
     </h3>
 
     @if (!services() || services()!.length === 0) {
-      <div class="empty-state">
-        Пока нет добавленных услуг. Добавьте первую услугу!
-      </div>
+    <div class="empty-state">
+      Пока нет добавленных услуг. Добавьте первую услугу!
+    </div>
     }
 
     @if (services() && services()!.length > 0) {
-      <!-- Таблица для ПК -->
-      <div class="table-responsive desktop-only">
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>Название</th>
-              <th>Slug</th>
-              <th>Срок</th>
-              <th>Статус</th>
-              <th style="text-align: right">Действия</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (service of services()!; track service.id) {
-              <tr>
-                <td class="font-medium">{{ service.title || 'Без названия' }}</td>
-                <td><code>{{ service.slug || '—' }}</code></td>
-                <td>{{ service.deliveryWeeks }} нед.</td>
-                <td>
-                  <span
-                    class="status-badge"
-                    [class.published]="service.isPublished"
-                  >
-                    {{ service.isPublished ? 'Опубликовано' : 'Черновик' }}
-                  </span>
-                </td>
-                <td style="text-align: right">
-                  <div class="table-actions">
-                    <button
-                      class="btn-icon"
-                      (click)="openEditModal(service)"
-                      title="Редактировать"
-                    >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                      </svg>
-                    </button>
-                    <button
-                      class="btn-icon text-danger"
-                      (click)="deleteService(service.id)"
-                      title="Удалить"
-                    >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="3 6 5 6 21 6"></polyline>
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                      </svg>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Карточки для мобильных -->
-      <div class="service-cards mobile-only">
-        @for (service of services()!; track service.id) {
-          <article class="service-card">
-            <div class="service-card-header">
-              <div>
-                <h4 class="service-card-title">{{ service.title || 'Без названия' }}</h4>
-                <p class="service-card-meta">
-                  {{ service.deliveryWeeks }} нед. · {{ service.isPublished ? 'Опубликовано' : 'Черновик' }}
-                </p>
-              </div>
-              <div class="service-card-actions">
+    <!-- Таблица для ПК -->
+    <div class="table-responsive desktop-only">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Название</th>
+            <th>Slug</th>
+            <th>Срок</th>
+            <th>Статус</th>
+            <th style="text-align: right">Действия</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (service of services()!; track service.id) {
+          <tr>
+            <td class="font-medium">{{ service.title || 'Без названия' }}</td>
+            <td><code>{{ service.slug || '—' }}</code></td>
+            <td>{{ service.deliveryWeeks }} нед.</td>
+            <td>
+              <span class="status-badge" [class.published]="service.isPublished">
+                {{ service.isPublished ? 'Опубликовано' : 'Черновик' }}
+              </span>
+            </td>
+            <td style="text-align: right">
+              <div class="table-actions">
                 <button class="btn-icon" (click)="openEditModal(service)" title="Редактировать">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -226,13 +157,45 @@
                   </svg>
                 </button>
               </div>
-            </div>
-            <p class="service-card-description">
-              {{ service.shortDescription || service.description || 'Описание отсутствует' }}
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Карточки для мобильных -->
+    <div class="service-cards mobile-only">
+      @for (service of services()!; track service.id) {
+      <article class="service-card">
+        <div class="service-card-header">
+          <div>
+            <h4 class="service-card-title">{{ service.title || 'Без названия' }}</h4>
+            <p class="service-card-meta">
+              {{ service.deliveryWeeks }} нед. · {{ service.isPublished ? 'Опубликовано' : 'Черновик' }}
             </p>
-          </article>
-        }
-      </div>
+          </div>
+          <div class="service-card-actions">
+            <button class="btn-icon" (click)="openEditModal(service)" title="Редактировать">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+            </button>
+            <button class="btn-icon text-danger" (click)="deleteService(service.id)" title="Удалить">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="service-card-description">
+          {{ service.shortDescription || service.description || 'Описание отсутствует' }}
+        </p>
+      </article>
+      }
+    </div>
     }
   </div>
 </div>
