@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 import {
@@ -18,7 +18,13 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'enabled',
+        anchorScrolling: 'enabled', // Опционально: включит скролл к якорным ссылкам (#id)
+      }),
+    ),
     provideClientHydration(withEventReplay()),
 
     // Инициализация Firebase

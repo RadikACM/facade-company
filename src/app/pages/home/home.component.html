@@ -1,1 +1,143 @@
-<p>home works!</p>
+<main class="home">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-label">Фасадные решения под ключ</p>
+
+        <h1 class="hero-title">
+          Облицовка фасадов алюминиевыми композитными панелями
+        </h1>
+
+        <p class="hero-description">
+          Проектирование, изготовление и монтаж современных фасадных систем
+          для коммерческих и частных объектов.
+        </p>
+
+        <div class="hero-actions">
+          <a class="hero-button hero-button-primary" routerLink="/contacts">
+            Рассчитать стоимость
+          </a>
+
+          <a class="hero-button hero-button-secondary" href="#projects">
+            Посмотреть проекты
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-overview">
+    <div class="container">
+      <div class="services-overview-header">
+        <p class="services-overview-label">Наши услуги</p>
+
+        <h2 class="services-overview-title">
+          Фасадные решения под ключ
+        </h2>
+
+        <p class="services-overview-description">
+          Проектируем, изготавливаем и монтируем фасады из алюминиевых
+          композитных панелей для частных домов и коммерческих объектов.
+          Берём на себя весь цикл работ — от замеров и разработки проекта
+          до монтажа и финальной проверки качества.
+        </p>
+      </div>
+
+      <div class="services-overview-grid">
+        @for (service of services().slice(0, 3); track service.slug) {
+        <app-service-card [card]="service" />
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <div class="container">
+      <div class="projects-header">
+        <div class="projects-heading">
+          <p class="projects-label">Наши работы</p>
+          <h2 class="projects-title">Реализованные проекты</h2>
+        </div>
+
+        <a class="projects-link" routerLink="/projects">
+          Все проекты
+        </a>
+      </div>
+
+      <div class="projects-grid">
+        @for (project of projects().slice(0, 3); track project.imageUrl) {
+        <app-project-card [project]="project" />
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="news-preview">
+    <div class="container">
+      <div class="news-preview-header">
+        <div>
+          <p class="news-preview-label">Полезные материалы</p>
+          <h2 class="news-preview-title">Новости компании</h2>
+        </div>
+
+        <a class="news-preview-link" routerLink="/news">
+          Все новости
+        </a>
+      </div>
+
+      <div class="news-preview-grid">
+        @for (item of news().slice(0, 3); track item.publishedAt) {
+        <app-news-card [post]="item" />
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="news-preview">
+    <div class="container">
+      <div class="news-preview-header">
+        <div>
+          <p class="news-preview-label">Мнения о нашей работе</p>
+          <h2 class="news-preview-title">Результаты, которыми довольны заказчики</h2>
+        </div>
+
+        <a class="news-preview-link" routerLink="/news">
+          Все отзывы
+        </a>
+      </div>
+
+      <div class="news-preview-grid">
+        @for (review of reviews().slice(0, 3); track review.createdAt) {
+        <app-review-card [review]="review" />
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-cta">
+    <div class="container">
+      <div class="contact-cta-box">
+        <p class="contact-cta-label">Обсудим ваш проект</p>
+
+        <h2 class="contact-cta-title">
+          Планируете обновить фасад?
+        </h2>
+
+        <p class="contact-cta-description">
+          Расскажите нам об объекте — мы подберём подходящее фасадное решение,
+          рассчитаем стоимость материалов и подготовим план работ.
+        </p>
+
+        <div class="contact-cta-actions">
+          <a class="contact-cta-button primary" routerLink="/contacts">
+            Рассчитать стоимость
+          </a>
+
+          <a class="contact-cta-button secondary" href="#projects">
+            Посмотреть проекты
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

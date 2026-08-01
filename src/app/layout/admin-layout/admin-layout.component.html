@@ -6,7 +6,10 @@
         <span class="accent-dot"></span>
         <span>Admin Panel</span>
       </div>
+      @if(isSidebarOpen()) {
       <button (click)="closeSidebar()"><img src="/icons/close.svg" alt=""></button>
+      }
+
     </div>
 
     <nav class="sidebar-nav">
@@ -24,6 +27,9 @@
       </a>
       <a routerLink="services" routerLinkActive="active" (click)="closeSidebar()" class="nav-item">
         <span class="icon"><img src="/icons/build.svg" alt=""></span> Услуги
+      </a>
+      <a routerLink="reviews" routerLinkActive="active" (click)="closeSidebar()" class="nav-item">
+        <span class="icon"><img src="/icons/reviews.svg" alt=""></span> Отзывы
       </a>
     </nav>
 

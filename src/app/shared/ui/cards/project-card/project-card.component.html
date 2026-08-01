@@ -1,0 +1,55 @@
+<article class="project-card">
+  <div class="project-card-image">
+    <img
+      class="project-card-photo"
+      [src]="activeImage || project.imageUrl"
+      [alt]="project.title"
+    >
+  </div>
+
+  <div class="project-card-content">
+    <div class="project-card-meta">
+      <span class="project-card-category">{{ project.category }}</span>
+      <span class="project-card-year">{{ project.year }}</span>
+    </div>
+
+    <h3 class="project-card-title">{{ project.title }}</h3>
+
+    @if (project.client) {
+      <p class="project-card-client">
+        Заказчик: <span>{{ project.client }}</span>
+      </p>
+    }
+
+    <!-- Выводит fullDescription, если оно есть, иначе description -->
+    <p class="project-card-description">
+      {{ showFullDescription ? (project.fullDescription || project.description) : project.description }}
+    </p>
+    <button class="switchDesc" (click)="switchDesc()">{{showFullDescription? 'Краткое описание' : 'Полное описание'}}</button>
+
+    <!-- Отрисовка галереи -->
+    @if (project.gallery && project.gallery.length > 0) {
+      <div class="project-card-gallery">
+        <button 
+          type="button" 
+          class="gallery-thumb"
+          [class.active]="activeImage === project.imageUrl"
+          (click)="selectImage(project.imageUrl)"
+        >
+          <img [src]="project.imageUrl" [alt]="project.title">
+        </button>
+
+        @for (img of project.gallery; track $index) {
+          <button 
+            type="button" 
+            class="gallery-thumb"
+            [class.active]="activeImage === img"
+            (click)="selectImage(img)"
+          >
+            <img [src]="img" [alt]="project.title + ' фото ' + ($index + 1)">
+          </button>
+        }
+      </div>
+    }
+  </div>
+</article>

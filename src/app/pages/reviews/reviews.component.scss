@@ -1,0 +1,252 @@
+:host {
+  display: block;
+}
+
+.reviews-page {
+  overflow-x: clip;
+  background: var(--bg-main);
+}
+
+/* Hero */
+
+.reviews-hero {
+  padding: 120px 0 96px;
+  background: #0f1018;
+  border-bottom: 1px solid var(--border);
+}
+
+.reviews-hero__label,
+.reviews-catalog__label,
+.reviews-cta__label {
+  margin: 0 0 16px;
+  color: var(--brand-main);
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+}
+
+.reviews-hero__title {
+  max-width: 820px;
+  margin: 0 0 24px;
+  color: var(--text-main);
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 1.06;
+}
+
+.reviews-hero__description {
+  max-width: 760px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 19px;
+  line-height: 1.75;
+}
+
+/* Reviews catalog */
+
+.reviews-catalog {
+  padding: 104px 0;
+  background: var(--bg-secondary);
+}
+
+.reviews-catalog__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  align-items: end;
+  gap: 64px;
+  margin-bottom: 48px;
+}
+
+.reviews-catalog__title {
+  max-width: 680px;
+  margin: 0;
+  color: var(--text-main);
+  font-size: clamp(36px, 4.5vw, 54px);
+  line-height: 1.14;
+}
+
+.reviews-catalog__description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+/* Reviews grid */
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+/* CTA */
+
+.reviews-cta {
+  padding: 96px 0;
+  background: var(--bg-main);
+}
+
+.reviews-cta__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 64px;
+  padding: 64px;
+
+  background: #0f1018;
+  border: 1px solid rgba(249, 115, 22, 0.24);
+  border-radius: 22px;
+}
+
+.reviews-cta__title {
+  max-width: 720px;
+  margin: 0 0 18px;
+  color: var(--text-main);
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1.16;
+}
+
+.reviews-cta__text {
+  max-width: 680px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.reviews-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 54px;
+  padding: 0 28px;
+
+  color: var(--text-dark);
+  background: var(--brand-main);
+  border-radius: 11px;
+
+  box-shadow: 0 14px 32px rgba(249, 115, 22, 0.16);
+
+  font-size: 16px;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.reviews-cta__button:hover {
+  background: var(--brand-bright);
+  box-shadow: 0 18px 40px rgba(249, 115, 22, 0.24);
+  transform: translateY(-3px);
+}
+
+.reviews-cta__button:active {
+  transform: translateY(0);
+}
+
+.reviews-cta__button:focus-visible {
+  outline: 3px solid rgba(249, 115, 22, 0.35);
+  outline-offset: 4px;
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .reviews-hero {
+    padding: 96px 0 80px;
+  }
+
+  .reviews-catalog {
+    padding: 88px 0;
+  }
+
+  .reviews-catalog__header,
+  .reviews-cta__content {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-catalog__header {
+    gap: 28px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .reviews-cta__content {
+    gap: 34px;
+    padding: 48px;
+  }
+
+  .reviews-cta__button {
+    justify-self: start;
+  }
+}
+
+/* Phone */
+
+@media (max-width: 680px) {
+  .reviews-hero {
+    padding: 72px 0 64px;
+  }
+
+  .reviews-hero__title {
+    font-size: clamp(38px, 12vw, 52px);
+  }
+
+  .reviews-hero__description {
+    font-size: 17px;
+  }
+
+  .reviews-catalog,
+  .reviews-cta {
+    padding: 64px 0;
+  }
+
+  .reviews-catalog__header {
+    margin-bottom: 34px;
+  }
+
+  .reviews-catalog__title {
+    font-size: 34px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-card {
+    min-height: auto;
+    padding: 26px;
+  }
+
+  .reviews-cta__content {
+    gap: 30px;
+    padding: 40px 24px;
+    border-radius: 18px;
+  }
+
+  .reviews-cta__title {
+    font-size: 34px;
+  }
+
+  .reviews-cta__button {
+    width: 100%;
+    padding: 0 18px;
+  }
+}
+
+/* Отключаем анимации при соответствующей настройке устройства */
+
+@media (prefers-reduced-motion: reduce) {
+  .review-card,
+  .reviews-cta__button {
+    transition: none;
+  }
+}

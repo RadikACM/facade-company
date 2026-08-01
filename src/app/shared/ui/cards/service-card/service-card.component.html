@@ -1,0 +1,65 @@
+@if (showFullDescription) {
+  <article class="service-card">
+    <div class="service-card__media">
+      @if (card.imageUrl) {
+        <img
+          class="service-card__image"
+          [src]="card.imageUrl"
+          [alt]="card.title"
+          loading="lazy"
+          decoding="async"
+        />
+      } @else {
+        <div class="service-card__placeholder" aria-hidden="true">
+          <span>FH</span>
+        </div>
+      }
+
+      <span class="service-card__index">Услуга {{ index }}</span>
+    </div>
+
+    <div class="service-card__content">
+      <div class="service-card__heading">
+        <h3 class="service-card__title">{{ card.title }}</h3>
+
+        <span class="service-card__delivery">
+          Срок от {{ card.deliveryWeeks }} нед.
+        </span>
+      </div>
+
+      <p class="service-card__summary">
+        {{ card.shortDescription }}
+      </p>
+
+      @if (card.description) {
+        <details class="service-card__details">
+          <summary>Подробнее об услуге</summary>
+          <p>{{ card.description }}</p>
+        </details>
+      }
+
+      <a
+        class="service-card__action"
+        routerLink="/contacts"
+        [attr.aria-label]="'Обсудить услугу «' + card.title + '»'"
+      >
+        Обсудить проект
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+} @else {
+  <article class="services-overview-card">
+    <span class="services-overview-number">
+      {{ card.slug }}
+    </span>
+
+    <h3>{{ card.title }}</h3>
+
+    <p>{{ card.shortDescription }}</p>
+
+    <a class="services-overview-link" routerLink="/services">
+      Подробнее →
+    </a>
+  </article>
+}

@@ -3,31 +3,48 @@
     <div class="footer-main">
 
       <div class="footer-brand">
-        <a routerLink="/" class="footer-logo">FacadeHouse</a>
+        <a routerLink="/" class="footer-logo" aria-label="FacadeHouse — главная">
+          <img class="footer-logo-image" src="/images/Logo.png" alt="Логотип FacadeHouse">
+          <span>FacadeHouse</span>
+        </a>
         <p class="footer-description">
           Облицовка фасадов алюминиевыми композитными панелями для коммерческих и частных объектов.</p>
       </div>
 
-      <nav class="footer-nav">
+      <nav class="footer-nav" aria-label="Навигация в подвале сайта">
         <h3 class="footer-title">Навигация</h3>
         <a routerLink="/">Главная</a>
         <a routerLink="/about">О компании</a>
-        <a routerLink="/services">Контакты</a>
-        <a routerLink="/projects">Услуги</a>
-        <a routerLink="/contact">Проекты</a>
+        <a routerLink="/contacts">Контакты</a>
+        <a routerLink="/services">Услуги</a>
+        <a routerLink="/projects">Проекты</a>
+        <a routerLink="/news">Новости</a>
       </nav>
 
       <div class="footer-contacts">
         <h3 class="footer-title">Контакты</h3>
-        <a href="tel:+79999999999" class="footer-contact"> +7 (999) 999-99-99</a>
-        <a href="mailto:info@facadehaus.ru" class="footer-contact">info$64;facadehaus.ru</a>
-        <address class="footer-address">  г. Москва</address>
+        <a [href]="'tel:'+ (contacts$ | async)?.phone" class="footer-contact">{{ (contacts$ | async)?.phone }}</a>
+        <a [href]="'mailto:'+ (contacts$ | async)?.email" class="footer-contact">{{ (contacts$ | async)?.email }}</a>
+        <address class="footer-address">г. Москва</address>
+
+        @if (contacts$ | async; as contact) {
+           <div class="footer-socials">
+          <a [href]="contact.telegramUrl" target="_blank">
+            <img src="/icons/telegram.svg" class="footer-socials__icon" alt="Иконка Telegram">
+          </a>
+          <a [href]="contact.whatsappUrl"  target="_blank">
+            <img src="/icons/whatsapp.svg" class="footer-socials__icon" alt="Иконка Whatsapp">
+          </a>
+          <a [href]="contact.instagramUrl" target="_blank">
+            <img src="/icons/instagram.svg" class="footer-socials__icon" alt="Иконка Instagram">
+          </a>
+        </div>
+        }
       </div>
     </div>
 
     <div class="footer-bottom">
-      <small>© 2026 FacadeHaus. Все права защищены.</small>
+      <small>© 2026 FacadeHouse. Все права защищены.</small>
     </div>
-
   </div>
 </footer>

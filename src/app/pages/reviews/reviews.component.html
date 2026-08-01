@@ -1,0 +1,64 @@
+<div class="reviews-page">
+  <section class="reviews-hero">
+    <div class="container">
+      <p class="reviews-hero__label">FacadeHouse / Отзывы</p>
+
+      <h1 class="reviews-hero__title">
+        Что говорят наши клиенты
+      </h1>
+
+      <p class="reviews-hero__description">
+        Нам доверяют облицовку частных домов и коммерческих объектов.
+        Собрали отзывы клиентов о качестве, сроках и результате нашей работы.
+      </p>
+    </div>
+  </section>
+
+  <section class="reviews-catalog">
+    <div class="container">
+      <div class="reviews-catalog__header">
+        <div>
+          <p class="reviews-catalog__label">Отзывы клиентов</p>
+
+          <h2 class="reviews-catalog__title">
+            Результат, которым довольны
+          </h2>
+        </div>
+
+        <p class="reviews-catalog__description">
+          Каждый проект выполняем по согласованному плану и контролируем
+          качество на всех этапах работ.
+        </p>
+      </div>
+
+      <div class="reviews-grid">
+  @for (review of reviews | async; track review.id ?? review.authorName) {
+    <app-review-card [review]="review"></app-review-card>
+  }
+</div>
+    </div>
+  </section>
+
+  <section class="reviews-cta">
+    <div class="container">
+      <div class="reviews-cta__content">
+        <div>
+          <p class="reviews-cta__label">Обсудим ваш объект</p>
+
+          <h2 class="reviews-cta__title">
+            Хотите получить такой же результат?
+          </h2>
+
+          <p class="reviews-cta__text">
+            Расскажите о проекте, и мы подготовим предварительный расчёт
+            стоимости фасадных работ.
+          </p>
+        </div>
+
+        <a class="reviews-cta__button" routerLink="/contacts">
+          Рассчитать стоимость
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

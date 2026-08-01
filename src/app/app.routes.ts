@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { ReviewsComponent } from './pages/reviews/reviews.component';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,10 @@ export const routes: Routes = [
             {
                 path: 'about',
                 loadComponent: () => import('./pages/about/about.component').then(m => m.AboutComponent)
+            },
+            {
+                path: 'reviews',
+                loadComponent: () => import('./pages/reviews/reviews.component').then(m => m.ReviewsComponent) 
             },
             {
                 path: 'contacts',

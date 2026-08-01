@@ -62,6 +62,7 @@ export class AdminProjectsComponent {
     year: new Date().getFullYear(),
     createdAt: new Date().toISOString(),
     imageUrl: '',
+    category: '',
   };
 
   get galleryArray(): FormArray<FormControl<string>> {
@@ -100,6 +101,7 @@ export class AdminProjectsComponent {
       year: project.year ?? new Date().getFullYear(),
       createdAt: project.createdAt ?? new Date().toISOString(),
       imageUrl: project.imageUrl ?? '',
+      category: project.category ?? '',
     });
 
     this.isModalOpen.set(true);
@@ -131,6 +133,7 @@ export class AdminProjectsComponent {
       createdAt: raw.createdAt ?? new Date().toISOString(),
       imageUrl: raw.imageUrl,
       gallery: cleanGallery,
+      category: raw.category
     };
 
     try {

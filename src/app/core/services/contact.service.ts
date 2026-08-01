@@ -2,21 +2,26 @@ import { inject, Injectable } from '@angular/core';
 import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
 import { Observable, shareReplay } from 'rxjs';
 import { ContactData } from '../models/contact.model';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
   private readonly firestore = inject(Firestore);
+  private readonly contactDocRef = doc(this.firestore, 'settings', 'contacts');
+
+  // Observable с контактами
+  readonly contacts$: Observable<ContactData> = docData(this.contactDocRef) as Observable<ContactData>;
+
+  // Публичный Signal с контактами для компонентов
+  readonly contacts = toSignal(this.contacts$, { initialValue: null });
 
   getContacts(): Observable<ContactData> {
-  const ref = doc(this.firestore, 'settings', 'contacts');
-  return docData(ref) as Observable<ContactData>;
-}
+    return this.contacts$;
+  }
 
-  // Обновляем или создаем документ, если его еще нет (setDoc с ключом merge)
-  async saveContacts(contacts: ContactData): Promise<any> {
-    const ref = doc(this.firestore, 'settings', 'contacts') as any;
-    return await setDoc(ref, contacts, { merge: true });
+  async saveContacts(contacts: ContactData): Promise<void> {
+    return await setDoc(this.contactDocRef, contacts, { merge: true });
   }
 }
