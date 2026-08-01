@@ -11,7 +11,8 @@ export class AuthService {
 
     private readonly ADMIN_EMAILS = [
         'kusurait@gmail.com',
-
+        'radikalimov2016@gmail.com',
+        'umarbaygullin096@gmail.com',
     ];
 
     private readonly _isAdmin = signal(false);
