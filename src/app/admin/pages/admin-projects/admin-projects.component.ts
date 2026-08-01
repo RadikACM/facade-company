@@ -52,6 +52,7 @@ export class AdminProjectsComponent {
     createdAt: new FormControl(new Date().toISOString()),
     imageUrl: new FormControl('', { nonNullable: true }),
     galery: this.fb.array<FormControl<string>>([]),
+    category: new FormControl('', { nonNullable: true }),
   });
 
   private readonly emptyFormValue = {
