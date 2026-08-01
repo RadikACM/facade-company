@@ -33,8 +33,9 @@
 /* LOGO */
 .header-logo {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   text-decoration: none;
   transition: opacity 0.3s ease;
 
@@ -44,17 +45,19 @@
 
   img {
     display: block;
-    height: 42px;
-    width: 18px;
+    width: 15px;
+    height: 36px;
     object-fit: cover;
     object-position: center;
   }
 
   span {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    line-height: 1;
+    letter-spacing: 0.045em;
     text-transform: uppercase;
+    white-space: nowrap;
     background: linear-gradient(180deg, #ffffff 0%, #a4a4a9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
