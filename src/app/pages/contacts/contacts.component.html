@@ -71,7 +71,7 @@
 
             @if (data.instagramUrl) {
               <li class="contact-item">
-                <div class="icon-wrapper whatsapp">
+                <div class="icon-wrapper instagram">
                   <img
                     class="contact-icon-image"
                     src="/icons/instagram.svg"
@@ -82,7 +82,7 @@
                   <span class="label">Instagram</span>
                   <a
                     [href]="
-                      'https://www.instagram.com/' + getCleanNumber(data.instagramUrl)
+                      getInstagramUrl(data.instagramUrl)
                     "
                     target="_blank"
                     rel="noopener noreferrer"

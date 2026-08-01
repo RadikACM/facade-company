@@ -26,6 +26,10 @@ export const ADMIN_ROUTES: Routes = [
             {
                 path: 'news',
                 loadComponent: () => import('./pages/admin-news/admin-news.component').then(m => m.AdminNewsComponent)
+            },
+            {
+                path: 'reviews',
+                loadComponent: () => import('./pages/admin-reviews/admin-reviews.component').then(m => m.AdminReviewsComponent)
             }
         ]
     }
