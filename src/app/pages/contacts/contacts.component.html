@@ -69,7 +69,30 @@
               </li>
             }
 
-            @if (data.instagramUrl) {
+            @if (data.telegramUrl) {
+              <li class="contact-item">
+                <div class="icon-wrapper whatsapp">
+                  <img
+                    class="contact-icon-image"
+                    src="/icons/telegram.svg"
+                    alt=""
+                  />
+                </div>
+                <div class="contact-detail">
+                  <span class="label">Telegram</span>
+                  <a
+                    [href]="getTelegramUrl(data.telegramUrl)"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="value link"
+                  >
+                    {{ data.telegramUrl }}
+                  </a>
+                </div>
+              </li>
+            }
+
+            <!-- @if (data.instagramUrl) {
               <li class="contact-item">
                 <div class="icon-wrapper instagram">
                   <img
@@ -92,7 +115,33 @@
                   </a>
                 </div>
               </li>
+            } -->
+
+             @if (data.maxUrl) {
+              <li class="contact-item">
+                <div class="icon-wrapper instagram">
+                  <img
+                    class="contact-icon-image"
+                    src="/icons/max.svg"
+                    alt=""
+                  />
+                </div>
+                <div class="contact-detail">
+                  <span class="label">Max</span>
+                  <a
+                    [href]="
+                    getMaxUrl(data.maxUrl)
+                    "
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="value link"
+                  >
+                    {{ data.maxUrl }}
+                  </a>
+                </div>
+              </li>
             }
+
 
             <!-- Email -->
             @if (data.email) {
