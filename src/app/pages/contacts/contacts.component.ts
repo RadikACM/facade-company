@@ -29,7 +29,22 @@ private fb = inject(FormBuilder);
     return phone.replace(/\D/g, '');
   }
 
-  getInstagramUrl(input: string | undefined): string {
+//   getInstagramUrl(input: string | undefined): string {
+//   if (!input) return '';
+
+//   const trimmed = input.trim();
+
+//   if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+//     return trimmed;
+//   }
+
+//   const cleanUsername = trimmed.replace(/^@/, '');
+
+//   return `https://instagram.com/${cleanUsername}`;
+// }
+
+
+getTelegramUrl(input: string | undefined): string {
   if (!input) return '';
 
   const trimmed = input.trim();
@@ -40,8 +55,25 @@ private fb = inject(FormBuilder);
 
   const cleanUsername = trimmed.replace(/^@/, '');
 
-  return `https://instagram.com/${cleanUsername}`;
+  return `https://t.me/${cleanUsername}`;
 }
+
+
+
+ getMaxUrl(input: string | undefined): string {
+  if (!input) return '';
+
+  const trimmed = input.trim();
+
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+
+  const cleanUsername = trimmed.replace(/^@/, '');
+
+  return `https://max.ru/u/${cleanUsername}`;
+}
+
 
   onSubmit(): void {
     if (this.form.invalid) return;
