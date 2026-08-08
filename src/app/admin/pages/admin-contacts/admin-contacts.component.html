@@ -38,12 +38,22 @@
         />
       </label>
 
-      <label class="field">
+      <!-- <label class="field">
         <span class="field__label">Instagram</span>
         <input
           class="field__input"
           type="text"
           formControlName="instagramUrl"
+          placeholder="@username"
+        />
+      </label> -->
+
+      <label class="field">
+        <span class="field__label">Max</span>
+        <input
+          class="field__input"
+          type="text"
+          formControlName="maxUrl"
           placeholder="@username"
         />
       </label>
@@ -118,11 +128,19 @@
           </div>
         </article>
 
-        <article class="preview-card preview-card--instagram">
+        <!-- <article class="preview-card preview-card--instagram">
           <img src="/icons/instagram.svg" alt="" />
           <div>
             <span>Instagram</span>
             <strong>{{ form.value.instagramUrl }}</strong>
+          </div>
+        </article> -->
+
+        <article class="preview-card preview-card--max">
+          <img src="/icons/max.svg" alt="" />
+          <div>
+            <span>Max</span>
+            <strong>{{ form.value.maxUrl }}</strong>
           </div>
         </article>
 

@@ -9,4 +9,5 @@ export interface ContactData {
   telegramUrl?: string;
   whatsappUrl?: string;
   facebookUrl?: string;
+  maxUrl?: string;
 }
