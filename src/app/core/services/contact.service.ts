@@ -11,10 +11,8 @@ export class ContactService {
   private readonly firestore = inject(Firestore);
   private readonly contactDocRef = doc(this.firestore, 'settings', 'contacts');
 
-  // Observable с контактами
   readonly contacts$: Observable<ContactData> = docData(this.contactDocRef) as Observable<ContactData>;
 
-  // Публичный Signal с контактами для компонентов
   readonly contacts = toSignal(this.contacts$, { initialValue: null });
 
   getContacts(): Observable<ContactData> {
