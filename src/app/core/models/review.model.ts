@@ -1,9 +1,10 @@
 export interface Review {
   id?: string;
+  projectId?: string;
   authorName: string;
-  authorRole?: string;     // Например: "Владелец коттеджа" или "Главный архитектор"
-  rating: number;         // От 1 до 5
+  authorRole?: string;     
+  rating: number;
   text: string;
-  objectType?: string;    // Например: "Частный дом", "АКП фасад"
+  objectType?: string;
   createdAt?: Date | any;
 }
