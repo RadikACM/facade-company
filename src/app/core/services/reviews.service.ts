@@ -29,6 +29,14 @@ export class ReviewService {
       return this.reviews$;
     }
 
+  getReviewByProjectId(projectId: string): Observable<Review | undefined> {
+    return this.reviews$.pipe(
+      map((reviews) =>
+        reviews.find((review) => review.projectId === projectId),
+      ),
+    );
+  }
+
   readonly reviews = toSignal(this.reviews$, { initialValue: [] });
 
   /** Создание отзыва */
