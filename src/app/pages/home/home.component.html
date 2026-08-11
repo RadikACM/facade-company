@@ -66,7 +66,7 @@
 
       <div class="projects-grid">
         @for (project of projects().slice(0, 3); track project.imageUrl) {
-        <app-project-card [project]="project" />
+        <app-project-card [project]="project" (projectClick)="openProject($event)" />
         }
       </div>
     </div>

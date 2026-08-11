@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Project } from '../../../../core/models/project.model';
 
 @Component({
@@ -9,6 +9,12 @@ import { Project } from '../../../../core/models/project.model';
 })
 export class ProjectCardComponent implements OnInit {
   @Input({ required: true }) project!: Project;
+
+  @Output() projectClick = new EventEmitter<Project>();
+
+  openProject(): void {
+    this.projectClick.emit(this.project);
+  }
 
   activeImage!: string;
 

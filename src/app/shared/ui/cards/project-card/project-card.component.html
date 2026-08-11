@@ -1,4 +1,4 @@
-<article class="project-card">
+<article class="project-card" (click)="openProject()">
   <div class="project-card-image">
     <img
       class="project-card-photo"
@@ -25,7 +25,7 @@
     <p class="project-card-description">
       {{ showFullDescription ? (project.fullDescription || project.description) : project.description }}
     </p>
-    <button class="switchDesc" (click)="switchDesc()">{{showFullDescription? 'Краткое описание' : 'Полное описание'}}</button>
+    <button class="switchDesc" (click)="$event.stopPropagation(); switchDesc()">{{showFullDescription? 'Краткое описание' : 'Полное описание'}}</button>
 
     <!-- Отрисовка галереи -->
     @if (project.gallery && project.gallery.length > 0) {
@@ -34,7 +34,7 @@
           type="button" 
           class="gallery-thumb"
           [class.active]="activeImage === project.imageUrl"
-          (click)="selectImage(project.imageUrl)"
+          (click)="$event.stopPropagation(); selectImage(project.imageUrl)"
         >
           <img [src]="project.imageUrl" [alt]="project.title">
         </button>
@@ -44,7 +44,7 @@
             type="button" 
             class="gallery-thumb"
             [class.active]="activeImage === img"
-            (click)="selectImage(img)"
+            (click)="$event.stopPropagation(); selectImage(img)"
           >
             <img [src]="img" [alt]="project.title + ' фото ' + ($index + 1)">
           </button>
