@@ -1,51 +1,29 @@
 <article class="project-modal">
+
   <button
     type="button"
     class="project-modal__close"
     mat-dialog-close
     aria-label="Закрыть"
   >
-    ×
+    <img src="icons/close.svg" alt="Иконка закрытия">
   </button>
 
-  <img
-    class="project-modal__image"
-    [src]="project.imageUrl"
-    [alt]="project.title"
-  >
+  <app-project-card
+    [project]="project"
+    [showFullDescription]="true"
+  ></app-project-card>
 
-  <div class="project-modal__content">
-    <div class="project-modal__meta">
-      <span>{{ project.category }}</span>
-      <span>{{ project.year }}</span>
-    </div>
-
-    <h2>{{ project.title }}</h2>
-
-    @if (project.client) {
-      <p class="project-modal__client">Заказчик: {{ project.client }}</p>
+  @if (reviews().length > 0) {
+    @for (review of reviews(); track review.id) {
+      <app-review-card
+        [review]="review"
+      ></app-review-card>
     }
-
-    <p class="project-modal__description">
-      {{ project.fullDescription || project.description }}
+  } @else {
+    <p class="project-modal__status">
+      Для этого проекта отзыв пока не добавлен.
     </p>
+  }
 
-    @if (!reviewRequested()) {
-      <button type="button" class="project-modal__review-button" (click)="loadReview()">
-        Посмотреть отзыв
-      </button>
-    } @else if (reviewLoading()) {
-      <p class="project-modal__status">Загружаем отзыв...</p>
-    } @else if (reviewError()) {
-      <p class="project-modal__status">Не удалось загрузить отзыв.</p>
-    } @else {
-      @if (review(); as projectReview) {
-        <div class="project-modal__review">
-          <app-review-card [review]="projectReview" />
-        </div>
-      } @else {
-        <p class="project-modal__status">Для этого проекта отзыв пока не добавлен.</p>
-      }
-    }
-  </div>
 </article>
