@@ -1,29 +1,99 @@
 <article class="project-modal">
 
+  <!-- Кнопка закрытия -->
   <button
     type="button"
     class="project-modal__close"
     mat-dialog-close
     aria-label="Закрыть"
   >
-    <img src="icons/close.svg" alt="Иконка закрытия">
+    <img src="icons/close.svg" alt="Закрыть">
   </button>
 
-  <app-project-card
-    [project]="project"
-    [showFullDescription]="true"
-  ></app-project-card>
+  <!-- Главное изображение (с поддержкой переключения из галереи) -->
+  <div class="project-modal__image-wrapper">
+    <img
+      class="project-modal__image"
+      [src]="activeImage || project.imageUrl"
+      [alt]="project.title"
+    />
+  </div>
 
-  @if (reviews().length > 0) {
-    @for (review of reviews(); track review.id) {
-      <app-review-card
-        [review]="review"
-      ></app-review-card>
+  <!-- Основной контент модального окна -->
+  <div class="project-modal__content">
+    
+    <!-- Метаданные (Категория и Год) -->
+    <div class="project-modal__meta">
+      @if (project.category) {
+        <span>{{ project.category }}</span>
+      }
+      @if (project.year) {
+        <span>{{ project.year }} года</span>
+      }
+    </div>
+
+    <!-- Заголовок проекта -->
+    <h2>{{ project.title }}</h2>
+
+    <!-- Заказчик -->
+    @if (project.client) {
+      <p class="project-modal__client">
+        Заказчик: <strong>{{ project.client }}</strong>
+      </p>
     }
-  } @else {
-    <p class="project-modal__status">
-      Для этого проекта отзыв пока не добавлен.
+
+    <!-- Полное или обычное описание -->
+    <p class="project-modal__description">
+      {{ project.fullDescription || project.description }}
     </p>
-  }
+
+    <!-- Переключатель фото из галереи -->
+    @if (project.gallery && project.gallery.length > 0) {
+      <div class="project-modal__gallery">
+        <button 
+          type="button" 
+          class="gallery-thumb"
+          [class.active]="activeImage === project.imageUrl"
+          (click)="selectImage(project.imageUrl)"
+        >
+          <img [src]="project.imageUrl" [alt]="project.title">
+        </button>
+
+        @for (img of project.gallery; track $index) {
+          <button 
+            type="button" 
+            class="gallery-thumb"
+            [class.active]="activeImage === img"
+            (click)="selectImage(img)"
+          >
+            <img [src]="img" [alt]="project.title + ' фото ' + ($index + 1)">
+          </button>
+        }
+      </div>
+    }
+
+    <!-- Блок Отзыва -->
+    <div class="project-modal__review-section">
+      <h3 class="section-title">Отзыв о проекте</h3>
+
+      <!-- 1. Если отзыв вложен прямо в объект проекта -->
+      @if (project.clientReview) {
+        <app-review-card [review]="project.clientReview" />
+      } 
+      <!-- 2. Иначе если отзывы подгружаются отдельно через ReviewService -->
+      @else if (reviews().length > 0) {
+        @for (review of reviews(); track review.id) {
+          <app-review-card [review]="review" />
+        }
+      } 
+      <!-- 3. Отзыва нет -->
+      @else {
+        <p class="project-modal__status">
+          Для этого проекта отзыв пока не добавлен.
+        </p>
+      }
+    </div>
+
+  </div>
 
 </article>
