@@ -1,3 +1,5 @@
+import { Review } from "./review.model";
+
 export interface Project {
   id: string;
 
@@ -12,4 +14,6 @@ export interface Project {
 
   imageUrl: string;
   gallery?: string[];
+
+  clientReview?: Review;
 }

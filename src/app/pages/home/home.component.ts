@@ -1,29 +1,51 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
 import { ServiceService } from '../../core/services/service.service';
 import { ProjectService } from '../../core/services/project.service';
 import { NewsService } from '../../core/services/news.service';
-import { NewsCardComponent } from "../../shared/ui/cards/news-card/news-card.component";
-import { ServiceCardComponent } from "../../shared/ui/cards/service-card/service-card.component";
-import { ProjectCardComponent } from "../../shared/ui/cards/project-card/project-card.component";
+import { NewsCardComponent } from '../../shared/ui/cards/news-card/news-card.component';
+import { ServiceCardComponent } from '../../shared/ui/cards/service-card/service-card.component';
+import { ProjectCardComponent } from '../../shared/ui/cards/project-card/project-card.component';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ReviewService } from '../../core/services/reviews.service';
-import { ReviewCardComponent } from "../../shared/ui/cards/review-card/review-card.component";
+import { ReviewCardComponent } from '../../shared/ui/cards/review-card/review-card.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Project } from '../../core/models/project.model';
+import { ProjectModalComponent } from '../../shared/ui/project-modal/project-modal.component';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, NewsCardComponent, ServiceCardComponent, ProjectCardComponent, ReviewCardComponent],
+  imports: [
+    RouterLink,
+    NewsCardComponent,
+    ServiceCardComponent,
+    ProjectCardComponent,
+    ReviewCardComponent,
+  ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   private serviceService = inject(ServiceService);
   private projectsService = inject(ProjectService);
   private newsService = inject(NewsService);
   private reviewsService = inject(ReviewService);
+  private readonly dialog = inject(MatDialog);
 
   services = toSignal(this.serviceService.getServices(), { initialValue: [] });
   projects = toSignal(this.projectsService.getProjects(), { initialValue: [] });
   news = toSignal(this.newsService.getsPosts(), { initialValue: [] });
   reviews = toSignal(this.reviewsService.getReviews(), { initialValue: [] });
+
+  openProject(project: Project): void {
+    this.dialog.open(ProjectModalComponent, {
+      data: project,
+
+      width: '900px',
+      maxWidth: '95vw',
+      maxHeight: '95vh',
+
+      backdropClass: 'project-modal-backdrop',
+    });
+  }
 }

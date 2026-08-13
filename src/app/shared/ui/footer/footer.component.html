@@ -1,14 +1,23 @@
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-main">
-
       <div class="footer-brand">
-        <a routerLink="/" class="footer-logo" aria-label="FacadeHouse — главная">
-          <img class="footer-logo-image" src="/images/Logo.png" alt="Логотип FacadeHouse">
+        <a
+          routerLink="/"
+          class="footer-logo"
+          aria-label="FacadeHouse — главная"
+        >
+          <img
+            class="footer-logo-image"
+            src="/images/Logo.png"
+            alt="Логотип FacadeHouse"
+          />
           <span>FacadeHouse</span>
         </a>
         <p class="footer-description">
-          Облицовка фасадов алюминиевыми композитными панелями для коммерческих и частных объектов.</p>
+          Облицовка фасадов алюминиевыми композитными панелями для коммерческих
+          и частных объектов.
+        </p>
       </div>
 
       <nav class="footer-nav" aria-label="Навигация в подвале сайта">
@@ -23,22 +32,45 @@
 
       <div class="footer-contacts">
         <h3 class="footer-title">Контакты</h3>
-        <a [href]="'tel:'+ (contacts$ | async)?.phone" class="footer-contact">{{ (contacts$ | async)?.phone }}</a>
-        <a [href]="'mailto:'+ (contacts$ | async)?.email" class="footer-contact">{{ (contacts$ | async)?.email }}</a>
-        <address class="footer-address">г. Москва</address>
+        <a
+          [href]="'tel:' + (contacts$ | async)?.phone"
+          class="footer-contact"
+          >{{ (contacts$ | async)?.phone }}</a
+        >
+        <a
+          [href]="'mailto:' + (contacts$ | async)?.email"
+          class="footer-contact"
+          >{{ (contacts$ | async)?.email }}</a
+        >
+        <!-- <address class="footer-address">г. Москва</address> -->
 
         @if (contacts$ | async; as contact) {
-           <div class="footer-socials">
-          <a [href]="contact.telegramUrl" target="_blank">
-            <img src="/icons/telegram.svg" class="footer-socials__icon" alt="Иконка Telegram">
-          </a>
-          <a [href]="contact.whatsappUrl"  target="_blank">
-            <img src="/icons/whatsapp.svg" class="footer-socials__icon" alt="Иконка Whatsapp">
-          </a>
-          <a [href]="contact.instagramUrl" target="_blank">
+          <div class="footer-socials">
+            <a [href]="getTelegramUrl(contact.telegramUrl) "target="_blank">
+              <img
+                src="/icons/telegram.svg"
+                class="footer-socials__icon"
+                alt="Иконка Telegram"
+              />
+            </a>
+            <a [href]="contact.whatsappUrl" target="_blank">
+              <img
+                src="/icons/whatsapp.svg"
+                class="footer-socials__icon"
+                alt="Иконка Whatsapp"
+              />
+            </a>
+            <!-- <a [href]="contact.instagramUrl" target="_blank">
             <img src="/icons/instagram.svg" class="footer-socials__icon" alt="Иконка Instagram">
-          </a>
-        </div>
+          </a> -->
+            <a [href]="'https://max.ru/u/'+ contact.maxUrl" target="_blank">
+              <img
+                src="/icons/max.svg"
+                class="footer-socials__icon"
+                alt="Иконка Max"
+              />
+            </a>
+          </div>
         }
       </div>
     </div>

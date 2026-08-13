@@ -1,0 +1,194 @@
+.project-modal {
+  position: relative;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  background: var(--bg-main);
+  border-radius: 16px;
+
+  /* Scrollbar (Firefox) */
+  scrollbar-width: thin;
+  scrollbar-color: #454545 #171717;
+
+  /* Scrollbar (Chrome / Edge / Safari) */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #171717;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #454545;
+    border-radius: 4px;
+
+    &:hover {
+      background: #5c5c5c;
+    }
+  }
+
+  /* Close Button */
+  &__close {
+    position: absolute;
+    z-index: 10;
+    top: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: var(--text-main);
+    background: rgba(23, 23, 23, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      background: rgba(40, 40, 40, 0.95);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  /* Main Image Wrapper & Photo */
+  &__image-wrapper {
+    width: 100%;
+    max-height: 440px;
+    overflow: hidden;
+    background: #000;
+
+    @media (max-width: 600px) {
+      max-height: 280px;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Content Wrapper */
+  &__content {
+    padding: 28px 32px 32px;
+
+    @media (max-width: 600px) {
+      padding: 20px 16px 24px;
+    }
+  }
+
+  /* Meta Info */
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+    color: var(--brand-main);
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    span:last-child {
+      color: var(--text-muted);
+    }
+  }
+
+  /* Title & Client */
+  h2 {
+    margin: 0 0 16px;
+    color: var(--text-main);
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    line-height: 1.2;
+  }
+
+  &__client {
+    margin: 0 0 16px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+
+    strong {
+      color: var(--text-main);
+    }
+  }
+
+  /* Description */
+  &__description {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+    white-space: pre-line; /* Сохраняет абзацы текста, если они есть */
+  }
+
+  /* Gallery Thumbnails */
+  &__gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+
+    .gallery-thumb {
+      width: 60px;
+      height: 44px;
+      padding: 0;
+      overflow: hidden;
+      background: none;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &.active {
+        border-color: var(--brand-main, #3b82f6);
+      }
+    }
+  }
+
+  /* Review Section & Status */
+  &__review-section {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+
+    .section-title {
+      margin: 0 0 16px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+  }
+
+  &__status {
+    margin: 16px 0 0;
+    padding: 16px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+}

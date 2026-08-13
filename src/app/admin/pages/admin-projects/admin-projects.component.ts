@@ -53,6 +53,15 @@ export class AdminProjectsComponent {
     imageUrl: new FormControl('', { nonNullable: true }),
     galery: this.fb.array<FormControl<string>>([]),
     category: new FormControl('', { nonNullable: true }),
+
+    // Вложенная форма отзыва заказчика
+    clientReview: new FormGroup({
+      authorName: new FormControl('', { nonNullable: true }),
+      authorRole: new FormControl('', { nonNullable: true }),
+      objectType: new FormControl('', { nonNullable: true }),
+      rating: new FormControl<number>(5, { nonNullable: true }),
+      text: new FormControl('', { nonNullable: true }),
+    }),
   });
 
   private readonly emptyFormValue = {
@@ -64,6 +73,13 @@ export class AdminProjectsComponent {
     createdAt: new Date().toISOString(),
     imageUrl: '',
     category: '',
+    clientReview: {
+      authorName: '',
+      authorRole: '',
+      objectType: '',
+      rating: 5,
+      text: '',
+    },
   };
 
   get galleryArray(): FormArray<FormControl<string>> {
@@ -103,6 +119,13 @@ export class AdminProjectsComponent {
       createdAt: project.createdAt ?? new Date().toISOString(),
       imageUrl: project.imageUrl ?? '',
       category: project.category ?? '',
+      clientReview: {
+        authorName: project.clientReview?.authorName ?? '',
+        authorRole: project.clientReview?.authorRole ?? '',
+        objectType: project.clientReview?.objectType ?? '',
+        rating: project.clientReview?.rating ?? 5,
+        text: project.clientReview?.text ?? '',
+      },
     });
 
     this.isModalOpen.set(true);
@@ -134,7 +157,8 @@ export class AdminProjectsComponent {
       createdAt: raw.createdAt ?? new Date().toISOString(),
       imageUrl: raw.imageUrl,
       gallery: cleanGallery,
-      category: raw.category
+      category: raw.category,
+      clientReview: raw.clientReview,
     };
 
     try {
@@ -166,7 +190,6 @@ export class AdminProjectsComponent {
     }
   }
 
-  // Общий метод для загрузки файла в Firebase Storage
   private async uploadFileToStorage(file: File): Promise<string> {
     const filePath = `projects/${Date.now()}_${file.name}`;
     const fileRef = ref(this.storage, filePath);
@@ -174,7 +197,6 @@ export class AdminProjectsComponent {
     return await getDownloadURL(fileRef);
   }
 
-  // Загрузка обложки проекта
   async onFileSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     const file = input.files?.[0];
@@ -195,7 +217,6 @@ export class AdminProjectsComponent {
     }
   }
 
-  // Загрузка нескольких файлов для галереи
   async onGalleryFilesSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
@@ -220,7 +241,6 @@ export class AdminProjectsComponent {
     }
   }
 
-  // Удаление фото из галереи по индексу
   removeGalleryImage(index: number): void {
     this.galleryArray.removeAt(index);
   }
